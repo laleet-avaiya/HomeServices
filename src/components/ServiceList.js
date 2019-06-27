@@ -55,12 +55,20 @@ const list = [
 
 
 export default class ServiceList extends React.Component {
-    // static navigationOptions = {
-    //     title: 'Service List',
-    // };
 
-    state = {
-        modalVisible: false,
+    constructor() {
+        super();
+        this.state = {
+            modalVisible: false,
+            title: '',
+        };
+    }
+
+    static navigationOptions = {
+        title: 'Login',
+        headerStyle: {
+            display: 'none',
+        },
     };
 
     setModalVisible(visible) {
@@ -72,40 +80,11 @@ export default class ServiceList extends React.Component {
     render() {
 
         const { navigate } = this.props.navigation;
+        // this.setState({ title: this.props.navigation.state.params.hello });
         return (
             <ScrollView>
-             {/* <Modal
-                    animationType="slide"
-                    transparent={false}
-                    visible={this.state.modalVisible}
-                    onRequestClose={() => {
-                        Alert.alert('Modal has been closed.');
-                    }}>
-                    <View style={{ marginTop: 22 }}>
-                        <View>
-                            <Text>Hello World!</Text>
 
-                            <TouchableHighlight
-                                onPress={() => {
-                                    this.setModalVisible(!this.state.modalVisible);
-                                }}>
-                                <Text>Hide Modal</Text>
-                            </TouchableHighlight>
-                        </View>
-                    </View>
-                </Modal>
-              */}
-                <Text>{this.props.navigation.state.params.hello}</Text>
-                {/* <TouchableHighlight
-                    onPress={() => {
-                        this.setModalVisible(true);
-                    }}>
-                    <Text>Show Modal</Text>
-                </TouchableHighlight>  */}
-                <View>
-                    <Button title="Login" onPress={() => navigate({ routeName: 'Login' })} />
-                    <Button title="Signup" onPress={() => navigate({ routeName: 'Signup' })} />
-                </View>
+                <Text style={styles.title}>{this.props.navigation.state.params.hello}</Text>
 
                 <View>
                     {
@@ -115,12 +94,35 @@ export default class ServiceList extends React.Component {
                                 leftAvatar={{ source: { uri: l.avatar_url } }}
                                 title={l.name}
                                 subtitle={l.subtitle}
-                                onPress={() => { alert(l.name) }}
+                                onPress={() => { alert("Visiting Charge : Rs. 100") }}
                             />
                         ))
                     }
                 </View>
-                </ScrollView>
+            </ScrollView>
         )
     }
 }
+
+
+
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        // justifyContent: 'center',
+        // alignItems: 'center',
+        backgroundColor: '#F5FCFF',
+        width: '100%'
+    },
+    title:{
+        fontSize:20,
+        fontWeight:'bold',
+        padding:0,
+        textAlign:'left',
+        padding:15,
+        borderBottomWidth:1,
+        color:'black'
+    },
+
+});

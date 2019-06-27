@@ -7,6 +7,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import Login from './Login'
 import Signup from './Signup'
 import ServiceList from './ServiceList'
+import ForgotPassword from './ForgotPassword'
 
 
 const users = [
@@ -124,6 +125,9 @@ const AppNavigator = createStackNavigator({
     },
     Signup: {
         screen: Signup
+    },
+    ForgotPassword:{
+        screen:ForgotPassword,
     },
     ServiceList: {
         screen: ServiceList,
