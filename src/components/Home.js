@@ -54,6 +54,7 @@ class Home extends React.Component {
         super();
         this.state = {
             search: '',
+            data:[]
         };
     }
 
@@ -65,14 +66,18 @@ class Home extends React.Component {
         // },
     };
 
-
-
     updateSearch = search => {
         this.setState({ search });
     };
+
+    getServiceList = () => {
+        fetch('http://localhost:5000/api/services').then(e => this.setState({data:e}));
+    }
     render() {
-        const { search } = this.state;
+        const { search,data } = this.state;
         const { navigate } = this.props.navigation;
+        this.getServiceList();
+
         return (
             <View style={styles.container}>
                 <SearchBar
@@ -88,6 +93,8 @@ class Home extends React.Component {
 
                 <ScrollView>
                     <View style={styles.cards}>
+
+                    <Text>{data}</Text>
                         {
                             users.map((u, i) => {
                                 return (
