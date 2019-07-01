@@ -14,9 +14,9 @@ class Home extends React.Component {
     constructor() {
         super();
         this.state = {
+            user: false,
             search: '',
-            user:false,
-            data: []
+            data: [],
         };
     }
 
