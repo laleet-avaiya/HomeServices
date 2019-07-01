@@ -6,9 +6,18 @@ export default class Login extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { text: '', login: false };
+        this.state = {
+            user: false,
+            email: '',
+            password: '',
+        };
+
     }
 
+
+    onChangeText = (key, val) => {
+        this.setState({ [key]: val });
+    };
 
     static navigationOptions = {
         title: 'Login',
@@ -18,13 +27,13 @@ export default class Login extends React.Component {
     };
 
     pressHandler = () => {
-        // this.props.loginHandler;
-        alert("Login pressed");
+        alert("he");
     }
 
     render() {
 
         const { navigate } = this.props.navigation;
+
         return (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
 
@@ -33,15 +42,17 @@ export default class Login extends React.Component {
                         underlineColorAndroid='rgba(0,0,0,0)'
                         placeholder="Enter Email Id"
                         placeholderTextColor="#ffffff"
+                        onChangeText={val => this.onChangeText("email", val)}
                     />
                     <TextInput style={styles.inputBox}
                         underlineColorAndroid='rgba(0,0,0,0)'
                         placeholder="Password"
                         secureTextEntry={true}
                         placeholderTextColor="#ffffff"
+                        onChangeText={val => this.onChangeText("password", val)}
                     />
 
-                    <Button title="Login" buttonStyle={styles.button} onPress={() => { this.pressHandler() }}></Button>
+                    <Button title="Login" buttonStyle={styles.button} onPress={() => { this.setState({ user: true }) }}></Button>
                     <Text style={styles.bottomText}><Text style={styles.forgotPassword} onPress={() => navigate({ routeName: "ForgotPassword" })}>Forgot Password ?</Text>| <Text style={styles.register} onPress={() => navigate({ routeName: "Signup" })}>Register Now. </Text> </Text>
                 </View>
 
@@ -57,10 +68,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        // alignItems: 'center',
         width: '100%',
-        // backgroundColor:'green'
-
     },
     inputBox: {
 
@@ -69,7 +77,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         paddingHorizontal: 16,
         fontSize: 16,
-        color: 'black',
+        color: '#ffffff',
         marginVertical: 16,
         backgroundColor: 'grey',
     },

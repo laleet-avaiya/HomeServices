@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import { View, Text, Image, StyleSheet, TextInput } from 'react-native';
 import { SearchBar, Card, ListItem, Button, Icon } from 'react-native-elements';
@@ -17,14 +15,14 @@ const HistoryData = [
     {
         name: 'Raju Painter',
         type: 'Painter',
-        date:  '26 June 2019',
+        date: '26 June 2019',
         phone: '+91-88985-68974'
     },
 
     {
         name: 'Ankit Parajapati',
         type: 'Appliance & Electronic Repair',
-        date:  '27 June 2019',
+        date: '27 June 2019',
         phone: '+91-88985-68974'
     },
 
@@ -32,7 +30,7 @@ const HistoryData = [
     {
         name: 'Mehul Rana',
         type: 'Laptop Repair',
-        date:  '28 June 2019',
+        date: '28 June 2019',
         phone: '+91-88985-68974'
     },
 
@@ -40,7 +38,7 @@ const HistoryData = [
     {
         name: 'Animesh Rana',
         type: 'Carpenter',
-        date:  '29 June 2019',
+        date: '29 June 2019',
         phone: '+91-88985-68974'
     },
 
@@ -48,7 +46,7 @@ const HistoryData = [
     {
         name: 'Raj Mehta',
         type: 'Painter',
-        date:  '20 June 2019',
+        date: '20 June 2019',
         phone: '+91-88985-68974'
     },
 
@@ -57,7 +55,7 @@ const HistoryData = [
     {
         name: 'Johan Martin',
         type: 'Plumber',
-        date:  '22 June 2019',
+        date: '22 June 2019',
         phone: '+91-88985-68974'
     },
 
@@ -66,7 +64,7 @@ const HistoryData = [
     {
         name: 'Anjli Parajapati',
         type: 'Electrician',
-        date:  '28 June 2019',
+        date: '28 June 2019',
         phone: '+91-88985-68974'
     },
 ]
@@ -100,7 +98,7 @@ class ServiceHistory extends React.Component {
         if (!login) {
             return (
                 <View style={styles.loginPage}>
-                    <Button buttonStyle={styles.button} title="Login" onPress={() => this.setState({login:true})} />
+                    <Button buttonStyle={styles.button} title="Login" onPress={() => this.setState({ login: true })} />
 
                     {/* <Button buttonStyle={styles.button} title="Login" onPress={() => navigate({ routeName: 'Login' })} /> */}
                     <Button buttonStyle={styles.button} title="Signup" onPress={() => navigate({ routeName: 'Signup' })} />
@@ -120,8 +118,8 @@ class ServiceHistory extends React.Component {
                         {
                             HistoryData.map((u, i) => {
                                 return (
-                                    <Card key={i} title={'Worker Name:' +  u.name} titleStyle={{textAlign:'left',fontSize:14}} containerStyle={styles.card} >
-                                    {/* <Card title={'Worker Name:' + u.name} titleStyle={styles.text}><Text>{user.email}</Text></Card> */}
+                                    <Card key={i} title={'Worker Name:' + u.name} titleStyle={{ textAlign: 'left', fontSize: 14 }} containerStyle={styles.card} >
+                                        {/* <Card title={'Worker Name:' + u.name} titleStyle={styles.text}><Text>{user.email}</Text></Card> */}
                                         {/* <Text style={styles.label}>Worker Name: {u.name}</Text> */}
                                         <Text style={styles.label}>Service Type: {u.type}</Text>
                                         <Text style={styles.label}>Date: {u.date}</Text>
@@ -133,7 +131,7 @@ class ServiceHistory extends React.Component {
                         }
                     </View>
                 </ScrollView>
-            {/* </Card> */}
+                {/* </Card> */}
             </View>
         )
     }
@@ -170,12 +168,12 @@ const styles = StyleSheet.create({
         backgroundColor: '#F5FCFF',
         width: '100%'
     },
-    title:{
-        fontSize:20,
-        fontWeight:'bold',
-        padding:0,
-        textAlign:'center',
-        color:'black'
+    title: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        padding: 0,
+        textAlign: 'center',
+        color: 'black'
     },
     cards: {
         flex: 1,
@@ -191,10 +189,10 @@ const styles = StyleSheet.create({
         margin: 5,
     },
 
-    label:{
-        fontWeight:'500',
-        fontSize:12,
-        margin:2,
+    label: {
+        fontWeight: '500',
+        fontSize: 12,
+        margin: 2,
     },
     name: {
         textAlign: 'center',

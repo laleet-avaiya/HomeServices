@@ -35,7 +35,7 @@ export default class BottomNav extends React.Component {
         return (
             <BottomNavigation
                 activeColor="white"
-                barStyle={{ backgroundColor: '#2c5bbe'}}
+                barStyle={{ backgroundColor: '#1e9bdd'}}
                 navigationState={this.state}
                 onIndexChange={this._handleIndexChange}
                 renderScene={this._renderScene}

@@ -33,6 +33,7 @@ class Profile extends React.Component {
             search: '',
             login: false,
         };
+        this.loginHandler = this.loginHandler.bind(this);
     }
 
     updateSearch = search => {
@@ -40,8 +41,11 @@ class Profile extends React.Component {
     };
 
     loginHandler = () => {
-        alert("hello");
         this.setState({login:true});
+    }
+
+    logoutHandler = () => {
+        this.setState({login:false});
     }
 
     render() {
@@ -51,7 +55,8 @@ class Profile extends React.Component {
         if (!login) {
             return (
                 <View style={styles.loginPage}>
-                    <Button buttonStyle={styles.button} title="Login" onPress={() => navigate({ routeName: 'Login' , /* params: { loginHandler:  this.loginHandler()} */ })} />
+                <Button buttonStyle={styles.button} title="Test" onPress={() => this.loginHandler() } />
+                    <Button buttonStyle={styles.button} title="Login" onPress={() => navigate({ routeName: 'Login' ,  params: { loginHandler: this.loginHandler} }  )} />
                     <Button buttonStyle={styles.button} title="Signup" onPress={() => navigate({ routeName: 'Signup' })} />
                 </View>
 
@@ -70,7 +75,7 @@ class Profile extends React.Component {
                         <Card title="Contact" titleStyle={styles.text}><Text>{user.phone}</Text></Card>
                         <Card title="Address" titleStyle={styles.text}><Text>{user.address}</Text></Card>
                         <Card title="Date of birth" titleStyle={styles.text}><Text>{user.dob}</Text></Card>
-                        <Button title='Logout' buttonStyle={styles.logout}></Button>
+                        <Button title='Logout' buttonStyle={styles.logout} onPress={() => this.logoutHandler() }></Button>
                     </View>
                 </ScrollView>
             </View>
