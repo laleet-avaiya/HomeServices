@@ -9,6 +9,13 @@ import Signup from './Signup'
 import ServiceList from './ServiceList'
 import ForgotPassword from './ForgotPassword'
 
+// const users = fetch('https://protected-coast-90386.herokuapp.com/api/services/')
+//     .then(function (response) {
+//         return response.json();
+//     })
+//     .then((myJson) => {
+//         return ({ data: (JSON.stringify(myJson)) });
+//     });
 
 const users = [
     {
@@ -54,7 +61,7 @@ class Home extends React.Component {
         super();
         this.state = {
             search: '',
-            data:[]
+            data: []
         };
     }
 
@@ -70,16 +77,25 @@ class Home extends React.Component {
         this.setState({ search });
     };
 
-    getServiceList = () => {
-        fetch('http://localhost:5000/api/services').then(e => this.setState({data:e}));
+    getServiceList = function () {
+
+        fetch('https://protected-coast-90386.herokuapp.com/api/services/')
+            .then(function (response) {
+                return response.json();
+            })
+            .then((myJson) => {
+                this.setState({ data: (JSON.stringify(myJson)) });
+            });
+
     }
     render() {
-        const { search,data } = this.state;
+        const { search, data } = this.state;
         const { navigate } = this.props.navigation;
         this.getServiceList();
 
         return (
             <View style={styles.container}>
+                <Text>{data}</Text>
                 <SearchBar
                     placeholder="Type Here..."
                     onChangeText={this.updateSearch}
@@ -94,7 +110,7 @@ class Home extends React.Component {
                 <ScrollView>
                     <View style={styles.cards}>
 
-                    <Text>{data}</Text>
+                        {/* <Text>{data}</Text> */}
                         {
                             users.map((u, i) => {
                                 return (
@@ -133,8 +149,8 @@ const AppNavigator = createStackNavigator({
     Signup: {
         screen: Signup
     },
-    ForgotPassword:{
-        screen:ForgotPassword,
+    ForgotPassword: {
+        screen: ForgotPassword,
     },
     ServiceList: {
         screen: ServiceList,
