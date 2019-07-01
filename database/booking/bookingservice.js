@@ -1,7 +1,7 @@
 const express = require('express')
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser')
-
+var bcrypt = require('bcrypt-nodejs');
 
 const app = express();
 

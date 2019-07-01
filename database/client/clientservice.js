@@ -1,7 +1,10 @@
 const express = require('express')
 var mongoose = require('mongoose');
+var bodyParser = require('body-parser')
+var bcrypt = require('bcrypt-nodejs');
 
 const app = express();
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');

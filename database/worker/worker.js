@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 mongoose.model('Worker', {
-    _id: Number,
+    // _id: Number,
     name: String,
     email: String,
     password: String,
