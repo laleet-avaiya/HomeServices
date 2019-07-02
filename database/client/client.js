@@ -3,11 +3,22 @@ var mongoose = require('mongoose');
 mongoose.model('Client', {
     // _id: Number,
     name: String,
-    email: String,
+    email: {
+        type: String,
+        unique: true,
+        required: true,
+        dropDups: true
+    },
     password: String,
-    phone: String,
+    phone: {
+        type: String,
+        unique: true,
+        required: true,
+        dropDups: true
+    },
     gender: String,
     address: String,
-    date_of_birth: String,
-    status: Number,
+    date_of_birth: Date,
+    registered_on:Date,
+    status: Number, // 0: Not Verified , 1: Verified.
 });
