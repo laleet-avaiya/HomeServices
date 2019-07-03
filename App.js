@@ -11,6 +11,12 @@ import ServiceList from './src/components/ServiceList'
 
 const AppNavigator = createStackNavigator({
 
+Login: {
+  screen: Login,
+},
+Signup: {
+    screen: Signup,
+},
   BottomNav: {
     screen: BottomNav,
   },

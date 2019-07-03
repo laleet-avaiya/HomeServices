@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation';
 import { SearchBar, Card, ListItem, Button, Icon } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -7,6 +7,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import Login from './Login'
 import Signup from './Signup'
 import ServiceList from './ServiceList'
+<<<<<<< HEAD
 import BookingDetailPage  from './BookingDetailPage'
 
 
@@ -46,70 +47,102 @@ const users = [
         avatar: 'https://cdn0.iconfinder.com/data/icons/colourful-education/250/bulb-512.png',
     },
 ]
+=======
+import ForgotPassword from './ForgotPassword'
+>>>>>>> ab09ef4b72c6560b0ef3031c98d3314bfd7d1b24
 
 class Home extends React.Component {
-
 
     constructor() {
         super();
         this.state = {
+            user: false,
             search: '',
+            data: [],
         };
     }
 
 
-    static navigationOptions = {
-        title: 'Welcome',
-        // headerStyle: {
-        //     display: 'none',
-        // },
-    };
+    async componentWillMount() {
+        await fetch('https://protected-coast-90386.herokuapp.com/api/services/')
+            .then((response) => response.json())
+            .then((responseJson) => {
+                this.setState({ data: responseJson });
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
 
 
 
     updateSearch = search => {
         this.setState({ search });
     };
-    render() {
-        const { search } = this.state;
-        const { navigate } = this.props.navigation;
-        return (
-            <View style={styles.container}>
-                <SearchBar
-                    placeholder="Type Here..."
-                    onChangeText={this.updateSearch}
-                    value={search}
-                    containerStyle={{ backgroundColor: 'transparent', borderWidth: 0 }}
-                    inputStyle={{ color: 'grey', backgroundColor: 'transparent' }}
-                    inputContainerStyle={{ borderWidth: 0 }}
-                    lightTheme={false}
-                    round={true}
-                />
 
-                <ScrollView>
-                    <View style={styles.cards}>
-                        {
-                            users.map((u, i) => {
-                                return (
-                                    <TouchableOpacity style={styles.cardContainer} key={i}
-                                        onPress={() => { navigate({ routeName: 'ServiceList', params: { hello: u.name } }) }}
-                                    >
-                                        <Card containerStyle={styles.card}>
-                                            <Image
-                                                style={styles.image}
-                                                resizeMode="cover"
-                                                source={{ uri: u.avatar }}
-                                            />
-                                            <Text style={styles.name}>{u.name}</Text>
-                                        </Card>
-                                    </TouchableOpacity>
-                                );
-                            })
-                        }
-                    </View>
-                </ScrollView>
-            </View>
-        )
+
+
+
+    static navigationOptions = {
+        title: 'Welcome',
+
+        headerStyle: {
+            backgroundColor: '#1e9bdd',
+            display: 'none',
+        },
+        headerTitleStyle: {
+            fontWeight: 'bold',
+            color: 'white',
+        },
+    };
+    render() {
+        const { search, data } = this.state;
+        const { navigate } = this.props.navigation;
+
+        if (data.length > 0) {
+            return (
+
+                <View style={styles.container}>
+                    <SearchBar
+                        placeholder="I'm Looking for..."
+                        onChangeText={this.updateSearch}
+                        value={search}
+                        containerStyle={{ backgroundColor: '#1e9bdd', borderBottomColor: '#1e9bdd', borderTopColor: '#1e9bdd' }}
+                        inputContainerStyle={{ backgroundColor: 'white', borderBottomColor: '#607fa7', borderTopColor: '#607fa7' }}
+                    />
+                    <ScrollView>
+                        <View style={styles.cards}>
+                            {
+                                data.map((u) => {
+                                    return (
+                                        <TouchableOpacity style={styles.cardContainer} key={u._id}
+                                            onPress={() => { navigate({ routeName: 'ServiceList', params: { hello: u.name } }) }}
+                                        >
+                                            <Card containerStyle={styles.card}>
+                                                <Image
+                                                    style={styles.image}
+                                                    resizeMode="cover"
+                                                    source={{ uri: u.avtar }}
+                                                />
+                                                <Text style={styles.name}>{u.name}</Text>
+                                            </Card>
+                                        </TouchableOpacity>
+                                    );
+                                })
+                            }
+                        </View>
+                    </ScrollView>
+                </View>
+            )
+        }
+        else {
+            return (
+                <View style={styles.ActivityContainer}>
+                    <ActivityIndicator size="large" color="#1e9bdd" />
+                </View>
+            )
+        }
+
     }
 }
 
@@ -125,6 +158,9 @@ const AppNavigator = createStackNavigator({
     },
     Signup: {
         screen: Signup
+    },
+    ForgotPassword: {
+        screen: ForgotPassword,
     },
     ServiceList: {
         screen: ServiceList,
@@ -146,6 +182,12 @@ export default createAppContainer(AppNavigator);
 
 
 const styles = StyleSheet.create({
+    ActivityContainer: {
+        flex: 1,
+        backgroundColor: '#F5FCFF',
+        width: '100%',
+        justifyContent: 'center',
+    },
     container: {
         flex: 1,
         backgroundColor: '#F5FCFF',

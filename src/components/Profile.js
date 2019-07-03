@@ -1,10 +1,12 @@
-
-
-
 import React from 'react';
 import { View, Text, Image, StyleSheet, TextInput } from 'react-native';
 import { SearchBar, Card, ListItem, Button, Icon, Badge, withBadge } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
+import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation';
+
+import Login from './Login';
+import Signup from './Signup';
+import ForgotPassword from './ForgotPassword';
 
 
 
@@ -17,7 +19,7 @@ const user = {
     dob: '01 January 1996',
 }
 
-export default class Profile extends React.Component {
+class Profile extends React.Component {
     static navigationOptions = {
         title: 'Home',
         headerStyle: {
@@ -29,14 +31,38 @@ export default class Profile extends React.Component {
         super();
         this.state = {
             search: '',
+            login: false,
         };
+        this.loginHandler = this.loginHandler.bind(this);
     }
 
     updateSearch = search => {
         this.setState({ search });
     };
+
+    loginHandler = () => {
+        this.setState({login:true});
+    }
+
+    logoutHandler = () => {
+        this.setState({login:false});
+    }
+
     render() {
-        const { search } = this.state;
+        const { search, login } = this.state;
+        const { navigate } = this.props.navigation;
+
+        if (!login) {
+            return (
+                <View style={styles.loginPage}>
+                <Button buttonStyle={styles.button} title="Test" onPress={() => this.loginHandler() } />
+                    <Button buttonStyle={styles.button} title="Login" onPress={() => navigate({ routeName: 'Login' ,  params: { loginHandler: this.loginHandler} }  )} />
+                    <Button buttonStyle={styles.button} title="Signup" onPress={() => navigate({ routeName: 'Signup' })} />
+                </View>
+
+            )
+        }
+
         return (
             <View style={styles.container}>
                 <ScrollView>
@@ -49,7 +75,7 @@ export default class Profile extends React.Component {
                         <Card title="Contact" titleStyle={styles.text}><Text>{user.phone}</Text></Card>
                         <Card title="Address" titleStyle={styles.text}><Text>{user.address}</Text></Card>
                         <Card title="Date of birth" titleStyle={styles.text}><Text>{user.dob}</Text></Card>
-                        <Button title='Logout' buttonStyle={styles.logout}></Button>
+                        <Button title='Logout' buttonStyle={styles.logout} onPress={() => this.logoutHandler() }></Button>
                     </View>
                 </ScrollView>
             </View>
@@ -58,6 +84,24 @@ export default class Profile extends React.Component {
 }
 
 
+const AppNavigator = createStackNavigator({
+    Profile: {
+        screen: Profile
+    },
+    Login: {
+        screen: Login,
+    },
+    Signup: {
+        screen: Signup,
+    }, 
+    ForgotPassword:{
+        screen:ForgotPassword,
+    },
+}, {
+        initialRouteName: 'Profile',
+    });
+
+export default createAppContainer(AppNavigator);
 
 
 const styles = StyleSheet.create({
@@ -66,6 +110,20 @@ const styles = StyleSheet.create({
         backgroundColor: '#F5FCFF',
         width: '100%',
         // marginBottom:50,
+    },
+
+    loginPage: {
+        flex: 1,
+        backgroundColor: '#F5FCFF',
+        width: '100%',
+        justifyContent: 'center',
+
+    },
+    button: {
+        width: '80%',
+        alignSelf: 'center',
+        margin: 10,
+        borderRadius: 10,
     },
     image: {
         width: 100,

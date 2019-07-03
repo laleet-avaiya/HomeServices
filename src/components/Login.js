@@ -1,16 +1,39 @@
 
 import React from 'react';
-import { View, Text, Button, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
-import BottomNav from './BottomNav'
-
+import { View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
+import { Button } from 'react-native-elements';
 export default class Login extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { text: '' };
+        this.state = {
+            user: false,
+            email: '',
+            password: '',
+        };
+
+    }
+
+
+    onChangeText = (key, val) => {
+        this.setState({ [key]: val });
+    };
+
+    static navigationOptions = {
+        title: 'Login',
+        headerStyle: {
+            display: 'none',
+        },
+    };
+
+    pressHandler = () => {
+        alert("he");
     }
 
     render() {
+
+        const { navigate } = this.props.navigation;
+
         return (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
 
@@ -19,17 +42,18 @@ export default class Login extends React.Component {
                         underlineColorAndroid='rgba(0,0,0,0)'
                         placeholder="Enter Email Id"
                         placeholderTextColor="#ffffff"
+                        onChangeText={val => this.onChangeText("email", val)}
                     />
                     <TextInput style={styles.inputBox}
                         underlineColorAndroid='rgba(0,0,0,0)'
                         placeholder="Password"
                         secureTextEntry={true}
                         placeholderTextColor="#ffffff"
+                        onChangeText={val => this.onChangeText("password", val)}
                     />
-                    <TouchableOpacity style={styles.button}>
-                        <Text style={styles.buttonText}>Login</Text>
-                    </TouchableOpacity>
 
+                    <Button title="Login" buttonStyle={styles.button} onPress={() => { this.setState({ user: true }) }}></Button>
+                    <Text style={styles.bottomText}><Text style={styles.forgotPassword} onPress={() => navigate({ routeName: "ForgotPassword" })}>Forgot Password ?</Text>| <Text style={styles.register} onPress={() => navigate({ routeName: "Signup" })}>Register Now. </Text> </Text>
                 </View>
 
             </View>
@@ -44,18 +68,18 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
-        // backgroundColor:'green'
+        width: '100%',
     },
     inputBox: {
+
         width: 300,
-        backgroundColor: 'rgba(255,255,255,0.3)',
         borderRadius: 25,
+        alignSelf: 'center',
         paddingHorizontal: 16,
         fontSize: 16,
         color: '#ffffff',
         marginVertical: 16,
-        backgroundColor: 'green'
+        backgroundColor: 'grey',
     },
     buttonText: {
         fontSize: 16,
@@ -64,11 +88,21 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     button: {
-        width: 300,
-        backgroundColor: '#1c313a',
-        borderRadius: 25,
-        marginVertical: 16,
-        paddingVertical: 13
+        width: '50%',
+        alignSelf: 'center',
+        margin: 10,
+        borderRadius: 10,
+    },
+    forgotPassword: {
+        fontWeight: '500',
+    },
+
+    register: {
+        fontWeight: '500',
+        color: '#2ea730',
+    },
+    bottomText: {
+        alignSelf: 'center',
 
     }
 });
