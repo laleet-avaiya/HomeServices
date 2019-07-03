@@ -7,49 +7,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import Login from './Login'
 import Signup from './Signup'
 import ServiceList from './ServiceList'
-<<<<<<< HEAD
-import BookingDetailPage  from './BookingDetailPage'
-
-
-const users = [
-    {
-        name: 'Electronic Repair',
-        avatar: 'http://chittagongit.com/download/101717',
-    },
-
-    {
-        name: 'Plumber',
-        avatar: 'https://cdn.websites.hibu.com/7da2af4cb2454e0f9a5b63524adbc06d/dms3rep/multi/mobile/hhh1_revised.png',
-    },
-    {
-        name: 'Carpenter',
-        avatar: 'http://pluspng.com/img-png/carpentry-png-hd-512x512-pixel-512.png',
-    },
-    {
-        name: 'Painter',
-        avatar: 'https://fayetteville.mrcabinetpainter.com/wp-content/uploads/2018/08/mr-cabinet-painter-paintbrush-icon.png',
-    },
-    {
-        name: 'Cleaning',
-        avatar: 'http://sterlingcleaningservicesllc.com/wp-content/uploads/2016/07/cropped-sterling-cleaning-services-icon-1.png',
-    },
-
-    {
-        name: 'Pest Control',
-        avatar: 'http://www.pearservices.com/wp-content/uploads/2016/08/pest-control-icons.png',
-    },
-
-    {
-        name: 'Laptop Repair',
-        avatar: 'https://images.cellphonerepair.com/wp-content/uploads/2016/10/computer-repair-page.png',
-    }, {
-        name: 'Electrician',
-        avatar: 'https://cdn0.iconfinder.com/data/icons/colourful-education/250/bulb-512.png',
-    },
-]
-=======
 import ForgotPassword from './ForgotPassword'
->>>>>>> ab09ef4b72c6560b0ef3031c98d3314bfd7d1b24
 
 class Home extends React.Component {
 
