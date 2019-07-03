@@ -7,6 +7,7 @@ import { createAppContainer, createStackNavigator, StackActions, NavigationActio
 import Login from './Login';
 import Signup from './Signup';
 import ForgotPassword from './ForgotPassword';
+import ChangePassword from './ChangePassword'
 
 
 
@@ -69,7 +70,7 @@ class Profile extends React.Component {
                     <View style={styles.container}>
                         <Card title={user.name} >
                             <Image source={{ uri: user.avtar }} style={styles.image}></Image>
-                            <Badge onPress={() => { alert('Profile Edit...') }} badgeStyle={styles.editProfile} value='Update Profile' status="primary" />
+                            <Badge onPress={() => { navigate({ routeName: 'ChangePassword', params: {  } }) }} badgeStyle={styles.editProfile} value='Update Profile' status="primary" />
                         </Card>
                         <Card title="Email" titleStyle={styles.text}><Text>{user.email}</Text></Card>
                         <Card title="Contact" titleStyle={styles.text}><Text>{user.phone}</Text></Card>
@@ -97,6 +98,9 @@ const AppNavigator = createStackNavigator({
     ForgotPassword:{
         screen:ForgotPassword,
     },
+    ChangePassword:{
+        screen:ChangePassword,
+    }
 }, {
         initialRouteName: 'Profile',
     });
