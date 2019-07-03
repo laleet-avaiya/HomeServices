@@ -61,6 +61,8 @@ app.post('/register', function (req, res) {
   new_user.address = req.body.address;
   new_user.date_of_birth = req.body.date_of_birth;
   new_user.registered_on = Date.now();
+
+  new_user.image = 'https://png.pngtree.com/svg/20170602/0db185fb9c.png';
   new_user.status = 1; //0: Not Verified , 1: Verified
 
   new_user.save()

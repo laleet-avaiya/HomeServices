@@ -16,6 +16,7 @@ mongoose.model('Client', {
         required: true,
         dropDups: true
     },
+    image:String,
     gender: String,
     address: String,
     date_of_birth: Date,

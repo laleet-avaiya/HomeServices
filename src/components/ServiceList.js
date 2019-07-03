@@ -65,7 +65,7 @@ export default class ServiceList extends React.Component {
     }
 
     static navigationOptions = {
-        title: 'Login',
+        title: 'Hello',
         headerStyle: {
             display: 'none',
         },
@@ -80,14 +80,32 @@ export default class ServiceList extends React.Component {
     render() {
 
         const { navigate } = this.props.navigation;
-        // this.setState({ title: this.props.navigation.state.params.hello });
+        // this.updateTitle(this.props.navigation.state.params.hello);
+
         return (
             <ScrollView>
-
-                <Text style={styles.title}>{this.props.navigation.state.params.hello}</Text>
+                <Text>
+                    {/* <Text>Back</Text> */}
+                    <Text style={styles.title}>{this.props.navigation.state.params.hello}</Text>
+                </Text>
 
                 <View>
-                    {
+
+                
+                <Card>
+                    <Text style={styles.title1}>Charges and T & C</Text>
+                </Card>
+
+                <Card>
+                    <Text style={styles.title1}>Select Date</Text>
+                </Card>
+
+                <Card>
+                    <Text style={styles.title1}>Select Time</Text>
+                </Card>
+               
+                <Button title="Book" buttonStyle={styles.button}></Button>
+                    {/* {
                         list.map((l, i) => (
                             <ListItem
                                 key={i}
@@ -97,7 +115,7 @@ export default class ServiceList extends React.Component {
                                 onPress={() => { alert("Visiting Charge : Rs. 100") }}
                             />
                         ))
-                    }
+                    } */}
                 </View>
             </ScrollView>
         )
@@ -115,14 +133,27 @@ const styles = StyleSheet.create({
         backgroundColor: '#F5FCFF',
         width: '100%'
     },
-    title:{
-        fontSize:20,
-        fontWeight:'bold',
-        padding:0,
-        textAlign:'left',
-        padding:15,
-        borderBottomWidth:1,
-        color:'black'
+    title: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        // padding: 0,
+        textAlign: 'center',
+        // padding: 15,
+        borderBottomWidth: 1,
+        color: 'black'
+    },
+    title1: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        padding: 0,
+        textAlign: 'center',
+        color: 'black'
+    },
+    button: {
+        width: '80%',
+        alignSelf: 'center',
+        margin: 10,
+        borderRadius: 10,
     },
 
 });
