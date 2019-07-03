@@ -7,6 +7,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import Login from './Login'
 import Signup from './Signup'
 import ServiceList from './ServiceList'
+import BookingDetailPage  from './BookingDetailPage'
 
 
 const users = [
@@ -128,6 +129,9 @@ const AppNavigator = createStackNavigator({
     ServiceList: {
         screen: ServiceList,
     },
+    BookingDetails:{
+        screen:BookingDetailPage,
+    }
 }, {
         initialRouteName: 'Home',
     });

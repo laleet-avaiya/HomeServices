@@ -63,9 +63,9 @@ export default class ServiceList extends React.Component {
         modalVisible: false,
     };
 
-    setModalVisible(visible) {
-        this.setState({ modalVisible: visible });
-    }
+        setModalVisible(visible) {
+            this.setState({ modalVisible: visible });
+        }
 
 
 
