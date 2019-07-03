@@ -3,7 +3,6 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
 import { Button } from 'react-native-elements';
 export default class Login extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -13,8 +12,6 @@ export default class Login extends React.Component {
         };
 
     }
-
-
     onChangeText = (key, val) => {
         this.setState({ [key]: val });
     };
@@ -61,9 +58,6 @@ export default class Login extends React.Component {
         )
     }
 }
-
-
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,

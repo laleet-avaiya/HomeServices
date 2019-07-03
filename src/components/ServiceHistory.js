@@ -156,10 +156,7 @@ const AppNavigator = createStackNavigator({
 
 
 
-
 export default createAppContainer(AppNavigator);
-
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,

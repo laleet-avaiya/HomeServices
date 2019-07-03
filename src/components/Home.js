@@ -123,10 +123,8 @@ const AppNavigator = createStackNavigator({
     ServiceList: {
         screen: ServiceList,
     },
-    BookingDetails:{
-        screen:BookingDetailPage,
-    }
-}, {
+},
+ {
         initialRouteName: 'Home',
     });
 
