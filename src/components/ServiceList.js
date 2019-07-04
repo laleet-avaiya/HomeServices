@@ -2,6 +2,7 @@ import React from 'react';
 import { Modal, Text, Image, StyleSheet, TextInput, TouchableHighlight, View, Alert } from 'react-native';
 import { SearchBar, Card, ListItem, Button, Icon, Badge, withBadge } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
+import DateTimePicker from "react-native-modal-datetime-picker";
 
 
 const list = [
@@ -56,66 +57,82 @@ const list = [
 
 export default class ServiceList extends React.Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            modalVisible: false,
+
             title: '',
+            isDatePickerVisible: false,
+            isTimePickerVisible: false,
+            date: '',
         };
     }
 
+
+
+
+    showDatePicker = () => {
+        this.setState({ isDatePickerVisible: true });
+    };
+
+    hideDatePicker = () => {
+        this.setState({ isDatePickerVisible: false });
+    };
+
+    handleDatePicked = date => {
+        var d = new Date(date);
+        alert(d);
+        this.setState({ date: date })
+        // alert(this.state.date);
+        this.hideDatePicker();
+    };
+
+
+
+
+
+
+
     static navigationOptions = {
-        title: 'Hello',
         headerStyle: {
             display: 'none',
         },
     };
 
-    setModalVisible(visible) {
-        this.setState({ modalVisible: visible });
-    }
-
-
-
     render() {
 
         const { navigate } = this.props.navigation;
-        // this.updateTitle(this.props.navigation.state.params.hello);
+        const { service_tnc, service_charge, service_name } = this.props.navigation.state.params;
+        const { date } = this.state;
+
 
         return (
             <ScrollView>
-                <Text>
-                    {/* <Text>Back</Text> */}
-                    <Text style={styles.title}>{this.props.navigation.state.params.hello}</Text>
-                </Text>
 
-                <View>
+                <Text style={styles.title}>{service_name}</Text>
 
-                
-                <Card>
-                    <Text style={styles.title1}>Charges and T & C</Text>
-                </Card>
+                <View style={styles.container}>
 
-                <Card>
-                    <Text style={styles.title1}>Select Date</Text>
-                </Card>
+                    <Card title="Terms & Conditions" titleStyle={{ textAlign: "left" }}>
+                        <Text style={styles.title1}>{service_tnc}</Text>
+                    </Card>
 
-                <Card>
-                    <Text style={styles.title1}>Select Time</Text>
-                </Card>
-               
-                <Button title="Book" buttonStyle={styles.button}></Button>
-                    {/* {
-                        list.map((l, i) => (
-                            <ListItem
-                                key={i}
-                                leftAvatar={{ source: { uri: l.avatar_url } }}
-                                title={l.name}
-                                subtitle={l.subtitle}
-                                onPress={() => { alert("Visiting Charge : Rs. 100") }}
-                            />
-                        ))
-                    } */}
+                    <Card title="Visiting Charge" titleStyle={{ textAlign: "left" }}>
+                        <Text style={styles.title1}> $ {service_charge}</Text>
+                    </Card>
+
+                    <Text style={styles.date}>{date.toString()}</Text>
+
+                    <Button title="Select Date & Time" buttonStyle={styles.button} onPress={this.showDatePicker} />
+                    <DateTimePicker
+                        isVisible={this.state.isDatePickerVisible}
+                        onConfirm={this.handleDatePicked}
+                        onCancel={this.hideDatePicker}
+                        mode='datetime'
+                    />
+
+                    <Button title="Book" buttonStyle={styles.button}></Button>
+
                 </View>
             </ScrollView>
         )
@@ -136,16 +153,20 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 20,
         fontWeight: 'bold',
-        // padding: 0,
-        textAlign: 'center',
-        // padding: 15,
-        borderBottomWidth: 1,
+        padding: 16,
         color: 'black'
     },
     title1: {
-        fontSize: 20,
+        fontSize: 14,
         fontWeight: 'bold',
         padding: 0,
+        color: 'black'
+    },
+    date: {
+        fontSize: 14,
+        fontWeight: 'bold',
+        // padding: 0,
+        margin:5,
         textAlign: 'center',
         color: 'black'
     },

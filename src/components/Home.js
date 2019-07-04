@@ -74,15 +74,15 @@ class Home extends React.Component {
                                 data.map((u) => {
                                     return (
                                         <TouchableOpacity style={styles.cardContainer} key={u._id}
-                                            onPress={() => { navigate({ routeName: 'ServiceList', params: { hello: u.name } }) }}
+                                            onPress={() => { navigate({ routeName: 'ServiceList', params: { service_name:u.service_name,service_tnc: u.service_tnc,service_charge:u.service_charge } }) }}
                                         >
                                             <Card containerStyle={styles.card}>
                                                 <Image
                                                     style={styles.image}
                                                     resizeMode="cover"
-                                                    source={{ uri: u.avtar }}
+                                                    source={{ uri: u.service_icon }}
                                                 />
-                                                <Text style={styles.name}>{u.name}</Text>
+                                                <Text style={styles.name}>{u.service_name}</Text>
                                             </Card>
                                         </TouchableOpacity>
                                     );
