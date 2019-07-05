@@ -74,7 +74,7 @@ class Home extends React.Component {
                                 data.map((u) => {
                                     return (
                                         <TouchableOpacity style={styles.cardContainer} key={u._id}
-                                            onPress={() => { navigate({ routeName: 'ServiceList', params: { service_name:u.service_name,service_tnc: u.service_tnc,service_charge:u.service_charge } }) }}
+                                            onPress={() => { navigate({ routeName: 'ServiceList', params: { service: u ,user:{_id:u._id,address:'Home'}} }) }}
                                         >
                                             <Card containerStyle={styles.card}>
                                                 <Image
