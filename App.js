@@ -5,22 +5,27 @@ import { createMaterialBottomTabNavigator } from "react-navigation-material-bott
 
 import Home from './src/components/Home'
 import Login from './src/components/Login'
+import UserDetail from './src/components/UserDetail'
 import Signup from './src/components/Signup'
 import BottomNav from './src/components/BottomNav'
 import ServiceList from './src/components/ServiceList'
 
 const AppNavigator = createStackNavigator({
 
-Login: {
-  screen: Login,
-},
-Signup: {
+  Login: {
+    screen: Login,
+  },
+  Signup: {
     screen: Signup,
-},
+  },
+  UserDetail: {
+    screen: UserDetail
+  },
   BottomNav: {
     screen: BottomNav,
   },
-}, {
+},
+  {
     initialRouteName: 'BottomNav',
   });
 
@@ -60,25 +65,28 @@ export default createAppContainer(AppNavigator);
 
 
 
-const bottomAppBar = createMaterialBottomTabNavigator({
-  Home: {
-    screen: Home,
-  },
-  Login: {
-    screen: Login
-  },
-  Signup: {
-    screen: Signup
-  },
-  ServiceList: {
-    screen: ServiceList,
-  },
-}, {
-    initialRouteName: 'Home',
-    activeColor: '#f0edf6',
-    inactiveColor: '#3e2465',
-    barStyle: { backgroundColor: '#694fad' },
-  });
+// const bottomAppBar = createMaterialBottomTabNavigator({
+//   Home: {
+//     screen: Home,
+//   },
+//   Login: {
+//     screen: Login
+//   },
+//   UserDetail: {
+//     screen: UserDetail
+//   },
+//   Signup: {
+//     screen: Signup
+//   },
+//   ServiceList: {
+//     screen: ServiceList,
+//   },
+// }, {
+//     initialRouteName: 'Home',
+//     activeColor: '#f0edf6',
+//     inactiveColor: '#3e2465',
+//     barStyle: { backgroundColor: '#694fad' },
+//   });
 
 
 

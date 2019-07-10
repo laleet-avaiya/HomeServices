@@ -83,17 +83,34 @@ class ServiceHistory extends React.Component {
         this.state = {
             search: '',
             login: false,
+            historyData: false,
         };
     }
 
     updateSearch = search => {
         this.setState({ search });
     };
+
+
+    async componentWillMount() {
+        await fetch('https://booking-service01.herokuapp.com/by_client_id/5d19bed4a11612274a2b98d1')
+            .then((response) => response.json())
+            .then((responseJson) => {
+                this.setState({ historyData: responseJson });
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
+
+
+
     render() {
 
-        const { search, login } = this.state;
+        const { search, login, historyData } = this.state;
         const { navigate } = this.props.navigation;
-
+        if (historyData)
+            alert(historyData);
 
         if (!login) {
             return (

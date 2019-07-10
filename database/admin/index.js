@@ -2,16 +2,31 @@ const express = require('express')
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser')
 var bcrypt = require('bcrypt-nodejs');
+var cors = require('cors');
 
 const app = express();
 
+// Then use it before your routes are set up:
+app.use(cors());
+
 app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'POST');
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-    res.setHeader('Access-Control-Allow-Credentials', true);
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    res.setHeader("Access-Control-Allow-Credentials", true);
     next();
 });
+
+// var corsMiddleware = function (req, res, next) {
+//     res.header('Access-Control-Allow-Origin', 'localhost'); //replace localhost with actual host
+//     res.header('Access-Control-Allow-Methods', 'OPTIONS, GET, PUT, PATCH, POST, DELETE');
+//     res.header('Access-Control-Allow-Headers', 'Content-Type, X-Requested-With, Authorization');
+
+//     next();
+// }
+
+// app.use(corsMiddleware);
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -106,9 +121,12 @@ app.get('/services/:id', (req, res) => {
 ------------------------------------------- Insert New Service  ------------------------------------
 --------------------------------------------------------------------------------------------------*/
 app.post('/insert_service/', (req, res) => {
+
     var new_service = new Services();
-    new_service.name = req.body.name;
-    new_service.avatar = '';
+    new_service.service_name = req.body.name;
+    new_service.service_tnc = req.body.tnc;
+    new_service.service_charge = req.body.charge;
+    new_service.service_icon = req.body.icon;
     new_service.save()
         .then(() => res.send("Service Added Successfully"))
         .catch((err) => {
@@ -116,8 +134,7 @@ app.post('/insert_service/', (req, res) => {
                 res.send("Service Already exits");
             else
                 res.send("Something wrong happened Try Again.")
-        }
-        );
+        });
 })
 
 
@@ -125,11 +142,15 @@ app.post('/insert_service/', (req, res) => {
 ------------------------------------------- Update  Service  ---------------------------------------
 --------------------------------------------------------------------------------------------------*/
 app.post('/update_service/', (req, res) => {
-    var id = req.body.id;
-    console.log(id);
+
     var updated_service = new Services();
+    var id = req.body.id;
+    // console.log(id);
     updated_service._id = id;
-    updated_service.name = req.body.name
+    updated_service.service_name = req.body.name;
+    updated_service.service_tnc = req.body.tnc;
+    updated_service.service_charge = req.body.charge;
+    updated_service.service_icon = req.body.icon;
 
     Services.findByIdAndUpdate(id, updated_service, { new: true }, function (err, model) {
         if (err)
@@ -143,9 +164,17 @@ app.post('/update_service/', (req, res) => {
 /*--------------------------------------------------------------------------------------------------
 ------------------------------------------- Delete  Service  ---------------------------------------
 --------------------------------------------------------------------------------------------------*/
-app.delete('/delete_service/', (req, res) => {
-    Services.findById(mongoose.Types.ObjectId(req.body.id)).then((ser) => ser.remove().then(() => res.send("Deleted"))).catch((e) => res.send(e));
+app.post('/delete_service/', (req, res) => {
+    // console.log(req.body.id);
+    Services.findById(mongoose.Types.ObjectId(req.body.id))
+        .then((ser) => ser.remove())
+        .then(() => res.send("Deleted"))
+        .catch((e) => res.send(e));
 })
+
+
+
+
 
 
 //------------------------------------------------------------------------------------------------

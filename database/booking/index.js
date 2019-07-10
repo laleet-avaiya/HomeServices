@@ -35,15 +35,15 @@ app.post('/add_service_request/', (req, res) => {
 
   new_service_request.client_id = mongoose.Types.ObjectId(req.body.client_id);
   new_service_request.service_type = mongoose.Types.ObjectId(req.body.service_type);
-  new_service_request.worker_id = null;
 
+  new_service_request.date_time = req.body.date_time;
   new_service_request.address = req.body.address;
   new_service_request.status = 3;
   new_service_request.total_amount = 100;
 
   new_service_request.request_date_time = Date.now();
-  new_service_request.date_time = Date.now();
   new_service_request.close_date_time = null;
+  new_service_request.worker_id = null;
 
   new_service_request.save()
     .then(() => res.send("Request Added Successfully"))

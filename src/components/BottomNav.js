@@ -13,6 +13,7 @@ export default class BottomNav extends React.Component {
             { key: 'history', title: 'Service History', icon: 'history' },
             { key: 'profile', title: 'Profile', icon: 'menu' },
         ],
+        login:false,
     };
 
     // Header
@@ -21,6 +22,7 @@ export default class BottomNav extends React.Component {
         headerStyle: {
             display: 'none',
         },
+        
     };
 
     _handleIndexChange = index => this.setState({ index });
@@ -35,7 +37,7 @@ export default class BottomNav extends React.Component {
         return (
             <BottomNavigation
                 activeColor="white"
-                barStyle={{ backgroundColor: '#1e9bdd'}}
+                barStyle={{ backgroundColor: '#007ceb'}}
                 navigationState={this.state}
                 onIndexChange={this._handleIndexChange}
                 renderScene={this._renderScene}

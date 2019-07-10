@@ -2,8 +2,20 @@ const express = require('express')
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser')
 var bcrypt = require('bcrypt-nodejs');
+var cors = require('cors');
 
 const app = express();
+
+// Then use it before your routes are set up:
+app.use(cors());
+
+// app.use(function (req, res, next) {
+//     res.setHeader("Access-Control-Allow-Origin", "*");
+//     res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+//     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+//     res.setHeader("Access-Control-Allow-Credentials", true);
+//     next();
+// });
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(function (req, res, next) {
@@ -123,6 +135,31 @@ app.get('/worker/:id', (req, res) => {
         res.json(docs);
     });
 })
+
+
+
+/*--------------------------------------------------------------------------------------------------
+------------------------------------------- Update  Worker Status  ---------------------------------
+--------------------------------------------------------------------------------------------------*/
+
+
+app.post('/update_status/', (req, res) => {
+    Worker.findById(req.body.id)
+        .then((response) => {
+            var new_worker = Worker(response);
+            new_worker.status = !new_worker.status;
+            // res.json(new_worker);
+            Worker.findByIdAndUpdate(new_worker._id, new_worker, { new: true }, function (err, model) {
+                if (err)
+                    res.send(err);
+                else
+                    res.send(model);
+            });
+        })
+        .catch((e) => res.send(e));
+
+})
+
 
 
 //------------------------------------------------------------------------------------------------

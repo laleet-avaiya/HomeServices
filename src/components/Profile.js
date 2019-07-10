@@ -1,11 +1,12 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, TextInput } from 'react-native';
+import { View, Text, Image, StyleSheet, TextInput, ActivityIndicator } from 'react-native';
 import { SearchBar, Card, ListItem, Button, Icon, Badge, withBadge } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation';
 
 import Login from './Login';
 import Signup from './Signup';
+import UserDetail from './UserDetail'
 import ForgotPassword from './ForgotPassword';
 import ChangePassword from './ChangePassword'
 
@@ -16,7 +17,7 @@ const user = {
     email: '201812087@daiict.ac.in',
     phone: '7359324923',
     address: '874/4, Sector-2C, Gandhinagar-382007, Gujarat',
-    avtar: 'https://png.pngtree.com/svg/20170602/0db185fb9c.png',
+    image: 'https://png.pngtree.com/svg/20170602/0db185fb9c.png',
     dob: '01 January 1996',
 }
 
@@ -32,32 +33,55 @@ class Profile extends React.Component {
         super();
         this.state = {
             search: '',
-            login: false,
+            user: false,
         };
         this.loginHandler = this.loginHandler.bind(this);
     }
+
 
     updateSearch = search => {
         this.setState({ search });
     };
 
     loginHandler = () => {
-        this.setState({login:true});
+        this.fetchUserData();
+        this.setState({ login: true });
     }
 
     logoutHandler = () => {
-        this.setState({login:false});
+        this.setState({ login: false, user: {} });
     }
 
+    fetchUserData = () => {
+        fetch('https://client-service02.herokuapp.com/client/5d1ae5c7be29654e7277f4fe')
+            .then((response) => response.json())
+            .then((responseJson) => {
+                this.setState({ user: responseJson });
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
+
+    async componentWillMount() {
+        await fetch('https://client-service02.herokuapp.com/client/5d1ae5c7be29654e7277f4fe')
+            .then((response) => response.json())
+            .then((responseJson) => {
+                this.setState({ user: responseJson });
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
     render() {
-        const { search, login } = this.state;
+        const { search, login, user } = this.state;
         const { navigate } = this.props.navigation;
 
         if (!login) {
             return (
                 <View style={styles.loginPage}>
-                <Button buttonStyle={styles.button} title="Test" onPress={() => this.loginHandler() } />
-                    <Button buttonStyle={styles.button} title="Login" onPress={() => navigate({ routeName: 'Login' ,  params: { loginHandler: this.loginHandler} }  )} />
+                    <Button buttonStyle={styles.button} title="Test" onPress={() => this.loginHandler()} />
+                    <Button buttonStyle={styles.button} title="Login" onPress={() => navigate({ routeName: 'Login', params: { loginHandler: this.loginHandler } })} />
                     <Button buttonStyle={styles.button} title="Signup" onPress={() => navigate({ routeName: 'Signup' })} />
                 </View>
 
@@ -94,9 +118,12 @@ const AppNavigator = createStackNavigator({
     },
     Signup: {
         screen: Signup,
-    }, 
-    ForgotPassword:{
-        screen:ForgotPassword,
+    },
+    UserDetail: {
+        screen: UserDetail
+    },
+    ForgotPassword: {
+        screen: ForgotPassword,
     },
     ChangePassword:{
         screen:ChangePassword,
@@ -109,6 +136,12 @@ export default createAppContainer(AppNavigator);
 
 
 const styles = StyleSheet.create({
+    ActivityContainer: {
+        flex: 1,
+        backgroundColor: '#F5FCFF',
+        width: '100%',
+        justifyContent: 'center',
+    },
     container: {
         flex: 1,
         backgroundColor: '#F5FCFF',

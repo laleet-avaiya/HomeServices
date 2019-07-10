@@ -22,7 +22,7 @@ class Home extends React.Component {
 
 
     async componentWillMount() {
-        await fetch('https://protected-coast-90386.herokuapp.com/api/services/')
+        await fetch('https://admin-service87.herokuapp.com/services/')
             .then((response) => response.json())
             .then((responseJson) => {
                 this.setState({ data: responseJson });
@@ -45,7 +45,7 @@ class Home extends React.Component {
         title: 'Welcome',
 
         headerStyle: {
-            backgroundColor: '#1e9bdd',
+            backgroundColor: '#007ceb',
             display: 'none',
         },
         headerTitleStyle: {
@@ -65,7 +65,7 @@ class Home extends React.Component {
                         placeholder="I'm Looking for..."
                         onChangeText={this.updateSearch}
                         value={search}
-                        containerStyle={{ backgroundColor: '#1e9bdd', borderBottomColor: '#1e9bdd', borderTopColor: '#1e9bdd' }}
+                        containerStyle={{ backgroundColor: '#007ceb', borderBottomColor: '#007ceb', borderTopColor: '#007ceb' }}
                         inputContainerStyle={{ backgroundColor: 'white', borderBottomColor: '#607fa7', borderTopColor: '#607fa7' }}
                     />
                     <ScrollView>
@@ -74,15 +74,15 @@ class Home extends React.Component {
                                 data.map((u) => {
                                     return (
                                         <TouchableOpacity style={styles.cardContainer} key={u._id}
-                                            onPress={() => { navigate({ routeName: 'ServiceList', params: { hello: u.name } }) }}
+                                            onPress={() => { navigate({ routeName: 'ServiceList', params: { service: u ,user:{_id:u._id,address:'Home'}} }) }}
                                         >
                                             <Card containerStyle={styles.card}>
                                                 <Image
                                                     style={styles.image}
                                                     resizeMode="cover"
-                                                    source={{ uri: u.avtar }}
+                                                    source={{ uri: u.service_icon }}
                                                 />
-                                                <Text style={styles.name}>{u.name}</Text>
+                                                <Text style={styles.name}>{u.service_name}</Text>
                                             </Card>
                                         </TouchableOpacity>
                                     );
@@ -96,7 +96,7 @@ class Home extends React.Component {
         else {
             return (
                 <View style={styles.ActivityContainer}>
-                    <ActivityIndicator size="large" color="#1e9bdd" />
+                    <ActivityIndicator size="large" color="#007ceb" />
                 </View>
             )
         }

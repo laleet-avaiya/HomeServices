@@ -18,11 +18,13 @@ mongoose.model("Admin", {
 
 mongoose.model("Services", {
     // _id: mongoose.Schema.Types.ObjectId,
-    name: {
+    service_name: {
         type: String,
         unique: true,
         required: true,
         dropDups: true
     },
-    avatar: String,
+    service_tnc: String,
+    service_charge: String,
+    service_icon: String,
 });
