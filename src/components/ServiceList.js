@@ -83,10 +83,10 @@ export default class ServiceList extends React.Component {
             this.setState({ modalVisible: visible });
         }
 
-        this.setState({
-            address: text
-        });
-    }
+        // this.setState({
+        //     address: text
+        // });
+    
 
 
     render() {
