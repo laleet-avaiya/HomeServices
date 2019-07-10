@@ -6,6 +6,7 @@ import { createAppContainer, createStackNavigator, StackActions, NavigationActio
 
 import Login from './Login';
 import Signup from './Signup';
+import UserDetail from './UserDetail'
 import ForgotPassword from './ForgotPassword';
 
 
@@ -47,7 +48,7 @@ class Profile extends React.Component {
     }
 
     logoutHandler = () => {
-        this.setState({ login: false,user: {} });
+        this.setState({ login: false, user: {} });
     }
 
     fetchUserData = () => {
@@ -126,6 +127,9 @@ const AppNavigator = createStackNavigator({
     },
     Signup: {
         screen: Signup,
+    },
+    UserDetail: {
+        screen: UserDetail
     },
     ForgotPassword: {
         screen: ForgotPassword,

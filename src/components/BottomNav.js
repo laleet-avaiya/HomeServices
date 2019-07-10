@@ -22,6 +22,7 @@ export default class BottomNav extends React.Component {
         headerStyle: {
             display: 'none',
         },
+        
     };
 
     _handleIndexChange = index => this.setState({ index });

@@ -1,5 +1,12 @@
 import React from 'react';
-import { View, Text, Button, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, TextInput, ImageBackground } from 'react-native';
+import { Input,Button } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+
+const backgroundImage = require('../assets/back.png');
+
+
 export default class ForgotPassword extends React.Component {
 
     constructor(props) {
@@ -24,20 +31,27 @@ export default class ForgotPassword extends React.Component {
 
         const { navigate } = this.props.navigation;
         return (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <View style={styles.container}>
+                <ImageBackground source={backgroundImage} style={{ width: '100%', height: '100%', backgroundColor: 'transparent' }}>
 
-                <View style={styles.container}>
-                    <TextInput style={styles.inputBox}
-                        underlineColorAndroid='rgba(0,0,0,0)'
-                        placeholder="Enter Email Id"
-                        placeholderTextColor="#ffffff"
+                <Text style={{ fontWeight: "700", fontSize: 24, textAlign: 'center', marginBottom: 20 ,color:'white' ,marginTop: 200}}>Forgot Password</Text>
+                    <Input
+                        placeholder='Email'
+                        underlineColorAndroid={'transparent'}
+                        inputContainerStyle={{ borderBottomWidth: 0 }}
+                        containerStyle={{ width: '80%', alignSelf: 'center', borderColor: 'white', borderWidth: 1, borderRadius: 100, marginTop: 50 }}
+                        leftIcon={
+                            <Icon
+                                name='envelope-open-o'
+                                size={24}
+                                color='white'
+                                style={{ margin: 3 }}
+                            />
+                        }
+                        onChangeText={val => this.onChangeText("email", val)}
                     />
-                    <TouchableOpacity style={styles.button} onPress={() => { this.pressHandler() }}>
-                        <Text style={styles.buttonText}>Submit</Text>
-                    </TouchableOpacity>
-                    {/* <Text><Text style={styles.forgotPassword}>Forgot Password ?</Text>| <Text style={styles.register}   onPress={() => navigate({ routeName: "Signup" })}>Register Now. </Text> </Text> */}
-                </View>
-
+                    <Button title="Done" buttonStyle={styles.button} onPress={() => { this.pressHandler() }}></Button>
+                </ImageBackground>
             </View>
 
         )
@@ -49,42 +63,20 @@ export default class ForgotPassword extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
         width: '100%',
-        // backgroundColor:'green'
+        alignContent:'center',
+        justifyContent:'center',
     },
-    inputBox: {
-
-        width: 300,
-        borderRadius: 25,
-
-        paddingHorizontal: 16,
-        fontSize: 16,
-        color: 'black',
-        marginVertical: 16,
-        backgroundColor: 'grey',
-    },
-    buttonText: {
-        fontSize: 16,
-        fontWeight: '500',
-        color: '#ffffff',
-        textAlign: 'center'
+    input: {
+        width: '80%', alignSelf: 'center', borderColor: 'white', borderWidth: 1, borderRadius: 100, margin: 15
     },
     button: {
-        width: '50%',
-        backgroundColor: '#2ea730',
-        borderRadius: 25,
-        marginVertical: 16,
-        paddingVertical: 13
-
+        width: '40%',
+        alignSelf: 'center',
+        margin: 30,
+        borderRadius: 100,
+        backgroundColor: 'transparent',
+        borderWidth: 1,
+        borderColor: 'white',
     },
-    forgotPassword: {
-        fontWeight: '500',
-    },
-
-    register: {
-        fontWeight: '500',
-        color: '#2ea730',
-    }
 });
