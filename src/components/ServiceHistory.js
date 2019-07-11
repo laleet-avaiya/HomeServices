@@ -119,8 +119,23 @@ class ServiceHistory extends React.Component {
                         <Text style={{ fontSize: 20, position: 'absolute', left: 15, top: 15, fontWeight: '500', color: 'white' }}>My Bookings</Text>
                     </View>
                     <ScrollView>
-
-                    </ScrollView>
+                    <View style={styles.cards}>
+                        {
+                            HistoryData.map((u, i) => {
+                                return (
+                                    <Card key={i} title={'Worker Name:' + u.name} titleStyle={{ textAlign: 'left', fontSize: 14 }} containerStyle={styles.card} >
+                                        {/* <Card title={'Worker Name:' + u.name} titleStyle={styles.text}><Text>{user.email}</Text></Card> */}
+                                        {/* <Text style={styles.label}>Worker Name: {u.name}</Text> */}
+                                        <Text style={styles.label}>Service Type: {u.type}</Text>
+                                        <Text style={styles.label}>Date: {u.date}</Text>
+                                        <Text style={styles.label}>Contact Number: {u.phone}</Text>
+                                        {/* <Text onPress={() => alert(u.name)} style={styles.name}>{u.name}</Text> */}
+                                    </Card>
+                                );
+                            })
+                        }
+                    </View>
+                </ScrollView>
 
                 </View>
             )

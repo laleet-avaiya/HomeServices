@@ -93,14 +93,14 @@ class Profile extends React.Component {
                         <List.Item
                             title="About HomeService"
                             left={props => <List.Icon {...props} icon="local-activity" />}
-                            style={{margin:0,padding:0}}
-                            titleStyle={{fontSize:14,}}
+                            style={{ margin: 0, padding: 0 }}
+                            titleStyle={{ fontSize: 14, }}
                         />
                         <List.Item
                             title="Share HomeService"
                             left={props => <List.Icon {...props} icon="share" />}
-                            style={{margin:0,padding:0}}
-                            titleStyle={{fontSize:14,}}
+                            style={{ margin: 0, padding: 0 }}
+                            titleStyle={{ fontSize: 14, }}
                         />
                     </ScrollView>
 
@@ -162,9 +162,13 @@ const AppNavigator = createStackNavigator({
     ForgotPassword: {
         screen: ForgotPassword,
     },
-}, {
-        initialRouteName: 'Profile',
-    });
+},
+    {
+        navigationOptions: ({ navigation }) => ({
+            tabBarVisible: false,
+        })
+    }
+);
 
 export default createAppContainer(AppNavigator);
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, TextInput, ImageBackground } from 'react-native';
 import { Input,Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 const backgroundImage = require('../assets/back.png');
@@ -17,8 +18,10 @@ export default class ForgotPassword extends React.Component {
 
     static navigationOptions = {
         title: 'Forgot Password',
+        
         headerStyle: {
-            // display: 'none',
+            display: 'none',
+
         },
     };
 
@@ -33,7 +36,7 @@ export default class ForgotPassword extends React.Component {
         return (
             <View style={styles.container}>
                 <ImageBackground source={backgroundImage} style={{ width: '100%', height: '100%', backgroundColor: 'transparent' }}>
-
+<ScrollView>
                 <Text style={{ fontWeight: "700", fontSize: 24, textAlign: 'center', marginBottom: 20 ,color:'white' ,marginTop: 200}}>Forgot Password</Text>
                     <Input
                         placeholder='Email'
@@ -51,6 +54,7 @@ export default class ForgotPassword extends React.Component {
                         onChangeText={val => this.onChangeText("email", val)}
                     />
                     <Button title="Done" buttonStyle={styles.button} onPress={() => { this.pressHandler() }}></Button>
+                    </ScrollView>
                 </ImageBackground>
             </View>
 

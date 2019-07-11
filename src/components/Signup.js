@@ -6,6 +6,7 @@ import { View, Text, TouchableOpacity, StyleSheet, TextInput, Image ,ImageBackgr
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input } from 'react-native-elements';
 import { Button } from 'react-native-elements';
+import { ScrollView } from 'react-native-gesture-handler';
 
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -49,6 +50,8 @@ export default class Signup1 extends React.Component {
 
                 {/* <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={['#4485af', 'gray']} style={styles.linearGradient}> */}
                 <ImageBackground source={backgroundImage} style={{ width: '100%', height: '100%',backgroundColor:'transparent' }}>
+                   
+                   <ScrollView>
                     <Image source={logo} style={{ width: 120, height: 120, alignSelf: 'center', marginTop: 40, marginBottom: 20 }}></Image>
 
                     <Text style={{ fontWeight: "700", fontSize: 24, textAlign: 'center', marginBottom: 20, color: 'white' }}>Create Account</Text>
@@ -117,6 +120,7 @@ export default class Signup1 extends React.Component {
 
 
                     <Button title="Continue" buttonStyle={styles.button} onPress={() => navigate({ routeName: "UserDetail" })}></Button>
+                    </ScrollView>
                 {/* </LinearGradient> */}
                 </ImageBackground>
             </View>
