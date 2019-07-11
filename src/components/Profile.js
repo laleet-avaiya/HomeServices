@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TextInput, ActivityIndicator } from 'react-native';
 import { SearchBar, Card, ListItem, Button, Icon, Badge, withBadge } from 'react-native-elements';
+import { List, Colors } from 'react-native-paper';
 import { ScrollView } from 'react-native-gesture-handler';
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation';
 
@@ -79,9 +80,36 @@ class Profile extends React.Component {
         if (!login) {
             return (
                 <View style={styles.loginPage}>
-                    <Button buttonStyle={styles.button} title="Test" onPress={() => this.loginHandler()} />
-                    <Button buttonStyle={styles.button} title="Login" onPress={() => navigate({ routeName: 'Login', params: { loginHandler: this.loginHandler } })} />
-                    <Button buttonStyle={styles.button} title="Signup" onPress={() => navigate({ routeName: 'Signup' })} />
+
+                    <ScrollView>
+                        <View style={{ backgroundColor: '#ff861b', height: 62, overflow: 'scroll' }} >
+                            <Text style={{ fontSize: 18, position: 'absolute', left: 15, top: 15, fontWeight: 'bold', color: 'white' }}>My Profile</Text>
+                            <Text
+                                style={{ position: 'absolute', textAlign: 'center', right: 15, top: 15, width: 60, color: 'white', padding: 5, borderColor: 'white', borderWidth: 1, borderRadius: 3 }}
+                                onPress={() => navigate({ routeName: 'Login', params: { loginHandler: this.loginHandler } })}
+                            >LOGIN</Text>
+                        </View>
+
+                        <List.Item
+                            title="About HomeService"
+                            left={props => <List.Icon {...props} icon="local-activity" />}
+                            style={{margin:0,padding:0}}
+                            titleStyle={{fontSize:14,}}
+                        />
+                        <List.Item
+                            title="Share HomeService"
+                            left={props => <List.Icon {...props} icon="share" />}
+                            style={{margin:0,padding:0}}
+                            titleStyle={{fontSize:14,}}
+                        />
+                    </ScrollView>
+
+
+                    {/* <Button buttonStyle={styles.button} title="Test" onPress={() => this.loginHandler()} />
+
+                    <Button buttonStyle={styles.button} title="Signup" onPress={() => navigate({ routeName: 'Signup' })} /> */}
+
+
                 </View>
 
             )
@@ -152,15 +180,13 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#F5FCFF',
         width: '100%',
-        // marginBottom:50,
     },
 
     loginPage: {
         flex: 1,
         backgroundColor: '#F5FCFF',
         width: '100%',
-        justifyContent: 'center',
-
+        overflow: 'scroll'
     },
     button: {
         width: '80%',
@@ -184,21 +210,9 @@ const styles = StyleSheet.create({
         padding: 5,
     },
     card: {
-        // alignItems: 'center',
-        // justifyContent: 'center',
         width: '95%',
         margin: 5,
     },
-
-    // label: {
-    //     fontWeight: '500',
-    //     fontSize: 12,
-    //     margin: 2,
-    // },
-    // name: {
-    //     textAlign: 'center',
-    //     marginTop: 15,
-    // },
     text: {
         textAlign: 'left',
         fontSize: 14

@@ -1,14 +1,12 @@
-import React from 'react';
-import { View, Text, Image, StyleSheet, TextInput } from 'react-native';
-import { SearchBar, Card, ListItem, Button, Icon } from 'react-native-elements';
+import React, { Component } from 'react'
+import { View, Text, Image, StyleSheet, TextInput, ActivityIndicator } from 'react-native';
+import { SearchBar, Card, ListItem, Button, Icon, Badge, withBadge } from 'react-native-elements';
+import { List, Colors } from 'react-native-paper';
 import { ScrollView } from 'react-native-gesture-handler';
-
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation';
 
 import Login from './Login';
 import Signup from './Signup';
-
-
 
 
 const HistoryData = [
@@ -109,18 +107,22 @@ class ServiceHistory extends React.Component {
 
         const { search, login, historyData } = this.state;
         const { navigate } = this.props.navigation;
-        if (historyData)
-            alert(historyData);
 
         if (!login) {
             return (
+
+
                 <View style={styles.loginPage}>
-                    <Button buttonStyle={styles.button} title="Login" onPress={() => this.setState({ login: true })} />
 
-                    {/* <Button buttonStyle={styles.button} title="Login" onPress={() => navigate({ routeName: 'Login' })} /> */}
-                    <Button buttonStyle={styles.button} title="Signup" onPress={() => navigate({ routeName: 'Signup' })} />
+
+                    <View style={{ backgroundColor: '#ff861b', height: 62, overflow: 'scroll' }} >
+                        <Text style={{ fontSize: 20, position: 'absolute', left: 15, top: 15, fontWeight: '500', color: 'white' }}>My Bookings</Text>
+                    </View>
+                    <ScrollView>
+
+                    </ScrollView>
+
                 </View>
-
             )
         }
 
@@ -178,13 +180,19 @@ export default createAppContainer(AppNavigator);
 
 
 const styles = StyleSheet.create({
+
     container: {
         flex: 1,
-        // justifyContent: 'center',
-        // alignItems: 'center',
         backgroundColor: '#F5FCFF',
-        width: '100%'
+        width: '100%',
     },
+    loginPage: {
+        flex: 1,
+        backgroundColor: '#F5FCFF',
+        width: '100%',
+        overflow: 'scroll'
+    },
+
     title: {
         fontSize: 20,
         fontWeight: 'bold',
@@ -229,4 +237,6 @@ const styles = StyleSheet.create({
         margin: 10,
         borderRadius: 10,
     },
+
+
 });

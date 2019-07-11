@@ -16,9 +16,9 @@ export default class ForgotPassword extends React.Component {
 
 
     static navigationOptions = {
-        title: 'Login',
+        title: 'Forgot Password',
         headerStyle: {
-            display: 'none',
+            // display: 'none',
         },
     };
 

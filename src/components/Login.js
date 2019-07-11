@@ -2,11 +2,8 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, TextInput, Image ,ImageBackground} from 'react-native';
 import { Button } from 'react-native-elements';
-
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input } from 'react-native-elements';
-
-import LinearGradient from 'react-native-linear-gradient';
 
 const logo = require('../assets/logo.png');
 const backgroundImage = require('../assets/back.png');
@@ -29,9 +26,9 @@ export default class Login extends React.Component {
     };
 
     static navigationOptions = {
-        title: 'Home',
+        title: 'Login',
         headerStyle: {
-            display: 'none',
+            // display: 'none',
         },
     };
     pressHandler = () => {
@@ -44,8 +41,6 @@ export default class Login extends React.Component {
 
         return (
             <View style={styles.container}>
-
-                {/* <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={['#4485af','gray']} style={styles.linearGradient}> */}
                 <ImageBackground source={backgroundImage} style={{ width: '100%', height: '100%',backgroundColor:'transparent' }}>
                     <Image source={logo} style={{ width: 120, height: 120, alignSelf: 'center', marginTop: 80, marginBottom: 20 }}></Image>
 
