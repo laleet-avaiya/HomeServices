@@ -85,6 +85,7 @@ class Home extends React.Component {
                     </View>
 
                     <ScrollView>
+
                     
                         <View style={styles.cards}>
                             {
