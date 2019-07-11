@@ -9,7 +9,22 @@ import { ScrollView } from 'react-native-gesture-handler';
 const logo = require('../assets/logo.png');
 const backgroundImage = require('../assets/back.png');
 
+
 export default class Login extends React.Component {
+
+    static navigationOptions = {
+        title: 'Login',
+        headerStyle: {
+            display: 'none',
+        },
+        headerTitleStyle: {
+            fontWeight: '600',
+            color: 'gray',
+            fontSize: 16,
+            marginLeft: 0,
+            paddingLeft: 0,
+        },
+    };
 
     constructor(props) {
         super(props);
@@ -26,12 +41,6 @@ export default class Login extends React.Component {
         this.setState({ [key]: val });
     };
 
-    static navigationOptions = {
-        title: 'Login',
-        headerStyle: {
-            display: 'none',
-        },
-    };
     pressHandler = () => {
         alert("he");
     }
@@ -45,7 +54,7 @@ export default class Login extends React.Component {
                 <ImageBackground source={backgroundImage} style={{ width: '100%', height: '100%', backgroundColor: 'transparent' }}>
 
                     <ScrollView>
-                    <Image source={logo} style={{ width: 120, height: 120, alignSelf: 'center', marginTop: 80, marginBottom: 20 }}></Image>
+                        <Image source={logo} style={{ width: 120, height: 120, alignSelf: 'center', marginTop: 80, marginBottom: 20 }}></Image>
                         <Text style={{ fontWeight: "700", fontSize: 24, textAlign: 'center', marginBottom: 20, color: 'white' }}>Home Services</Text>
                         <Input
                             placeholder='Email'
@@ -80,13 +89,12 @@ export default class Login extends React.Component {
                         {/* <Button title="Login" buttonStyle={styles.button} ></Button> */}
                         <Button title="Login" buttonStyle={styles.button} onPress={() => { this.setState({ user: true }) }}></Button>
 
-                        <View style={{ textAlign: 'center' }}>
+                        <View style={{ alignSelf: 'center', textAlign: 'center', flex: 1, alignContent: 'space-between', justifyContent: 'center' }}>
                             <Text style={styles.bottomText} onPress={() => navigate({ routeName: "ForgotPassword" })}>Forgot Password ?
-                    <Text style={styles.creteAcc} onPress={() => navigate({ routeName: "Signup" })}>                                   Create Account</Text>
+                            <Text style={styles.creteAcc} onPress={() => navigate({ routeName: "Signup" })}>                                   Create Account</Text>
                             </Text>
                         </View>
                     </ScrollView>
-                    {/* </LinearGradient> */}
                 </ImageBackground>
             </View>
 
@@ -116,15 +124,11 @@ const styles = StyleSheet.create({
         borderColor: 'white',
     },
     bottomText: {
-        textAlign: 'left',
         fontWeight: 'bold',
-        margin: 10,
         color: 'white',
     },
     creteAcc: {
-        textAlign: 'right',
         fontWeight: 'bold',
-        margin: 10,
         color: 'white',
     }
 });

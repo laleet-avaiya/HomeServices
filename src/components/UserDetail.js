@@ -32,9 +32,17 @@ export default class UserDetail extends React.Component {
     };
 
     static navigationOptions = {
-        title: 'Login',
+        title: 'User Details',
         headerStyle: {
             display: 'none',
+            // backgroundColor:'#ff861b',
+        },
+        headerTitleStyle: {
+            fontWeight: '600',
+            color: 'gray',
+            fontSize: 16,
+            marginLeft: 0,
+            paddingLeft: 0,
         },
     };
 
@@ -57,7 +65,7 @@ export default class UserDetail extends React.Component {
                 <ImageBackground source={logo} style={{ width: '100%', height: '100%', backgroundColor: 'transparent' }}>
 
                     <ScrollView>
-                        <Text style={{ fontWeight: "700", fontSize: 24, textAlign: 'center', marginTop: 20, marginBottom: 20, color: 'white' }}>User Details</Text>
+                        <Text style={{ fontWeight: "700", fontSize: 24, textAlign: 'center', marginTop: 20, marginBottom: 20, color: 'white' }}>Additional Information</Text>
                         <Input
                             placeholder='Phone Number'
                             underlineColorAndroid={'transparent'}

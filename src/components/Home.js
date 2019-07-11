@@ -4,8 +4,7 @@ import { createAppContainer, createStackNavigator, StackActions, NavigationActio
 import { SearchBar, Card, ListItem, Button, Input } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
-import ServiceList from './ServiceList'
+import ServiceList from './ServiceList';
 
 
 class Home extends React.Component {
@@ -86,7 +85,7 @@ class Home extends React.Component {
 
                     <ScrollView>
 
-                    
+
                         <View style={styles.cards}>
                             {
                                 data.map((u) => {
