@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TextInput, ActivityIndicator } from 'react-native';
 import { SearchBar, Card, ListItem, Button, Icon, Badge, withBadge } from 'react-native-elements';
+import { List, Colors } from 'react-native-paper';
 import { ScrollView } from 'react-native-gesture-handler';
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation';
 
@@ -8,7 +9,6 @@ import Login from './Login';
 import Signup from './Signup';
 import UserDetail from './UserDetail'
 import ForgotPassword from './ForgotPassword';
-import ChangePassword from './ChangePassword'
 
 
 
@@ -80,31 +80,68 @@ class Profile extends React.Component {
         if (!login) {
             return (
                 <View style={styles.loginPage}>
-                    <Button buttonStyle={styles.button} title="Test" onPress={() => this.loginHandler()} />
-                    <Button buttonStyle={styles.button} title="Login" onPress={() => navigate({ routeName: 'Login', params: { loginHandler: this.loginHandler } })} />
-                    <Button buttonStyle={styles.button} title="Signup" onPress={() => navigate({ routeName: 'Signup' })} />
+
+                    <ScrollView>
+                        <View style={{ backgroundColor: '#ff861b', height: 62, overflow: 'scroll' }} >
+                            <Text style={{ fontSize: 18, position: 'absolute', left: 15, top: 15, fontWeight: 'bold', color: 'white' }}>My Profile</Text>
+                            <Text
+                                style={{ position: 'absolute', textAlign: 'center', right: 15, top: 15, width: 60, color: 'white', padding: 5, borderColor: 'white', borderWidth: 1, borderRadius: 3 }}
+                                onPress={() => navigate({ routeName: 'Login', params: { loginHandler: this.loginHandler } })}
+                            >LOGIN</Text>
+                        </View>
+
+                        <List.Item
+                            title="About HomeService"
+                            left={props => <List.Icon {...props} icon="local-activity" />}
+                            style={{ margin: 0, padding: 0 }}
+                            titleStyle={{ fontSize: 14, }}
+                        />
+                        <List.Item
+                            title="Share HomeService"
+                            left={props => <List.Icon {...props} icon="share" />}
+                            style={{ margin: 0, padding: 0 }}
+                            titleStyle={{ fontSize: 14, }}
+                        />
+                    </ScrollView>
+
+
+                    {/* <Button buttonStyle={styles.button} title="Test" onPress={() => this.loginHandler()} />
+
+                    <Button buttonStyle={styles.button} title="Signup" onPress={() => navigate({ routeName: 'Signup' })} /> */}
+
+
                 </View>
 
             )
         }
 
-        return (
-            <View style={styles.container}>
-                <ScrollView>
-                    <View style={styles.container}>
-                        <Card title={user.name} >
-                            <Image source={{ uri: user.avtar }} style={styles.image}></Image>
-                            <Badge onPress={() => { navigate({ routeName: 'ChangePassword', params: {  } }) }} badgeStyle={styles.editProfile} value='Update Profile' status="primary" />
-                        </Card>
-                        <Card title="Email" titleStyle={styles.text}><Text>{user.email}</Text></Card>
-                        <Card title="Contact" titleStyle={styles.text}><Text>{user.phone}</Text></Card>
-                        <Card title="Address" titleStyle={styles.text}><Text>{user.address}</Text></Card>
-                        <Card title="Date of birth" titleStyle={styles.text}><Text>{user.dob}</Text></Card>
-                        <Button title='Logout' buttonStyle={styles.logout} onPress={() => this.logoutHandler() }></Button>
-                    </View>
-                </ScrollView>
-            </View>
-        )
+
+        if (user.name) {
+            return (
+                <View style={styles.contaistylesner}>
+                    <ScrollView>
+                        <View style={styles.container}>
+                            <Card title={user.name} >
+                                <Image source={{ uri: user.image }} style={styles.image}></Image>
+                                <Badge onPress={() => { alert('Profile Edit...') }} badgeStyle={styles.editProfile} value='Update Profile' status="primary" />
+                            </Card>
+                            <Card title="Email" titleStyle={styles.text}><Text>{user.email}</Text></Card>
+                            <Card title="Contact" titleStyle={styles.text}><Text>{user.phone}</Text></Card>
+                            <Card title="Address" titleStyle={styles.text}><Text>{user.address}</Text></Card>
+                            <Card title="Date of birth" titleStyle={styles.text}><Text>{user.date_of_birth}</Text></Card>
+                            <Button title='Logout' buttonStyle={styles.logout} onPress={() => this.logoutHandler()}></Button>
+                        </View>
+                    </ScrollView>
+                </View>
+            )
+        }
+        else {
+            return (
+                <View style={styles.ActivityContainer}>
+                    <ActivityIndicator size="large" color="#007ceb" />
+                </View>
+            )
+        }
     }
 }
 
@@ -125,13 +162,14 @@ const AppNavigator = createStackNavigator({
     ForgotPassword: {
         screen: ForgotPassword,
     },
-  
-}, 
-{
-    navigationOptions: ({ navigation }) => ({
-        tabBarVisible: false,
-    })
-});
+},
+    {
+        navigationOptions: ({ navigation }) => ({
+            tabBarVisible: false,
+        })
+    }
+);
+
 export default createAppContainer(AppNavigator);
 
 
@@ -146,15 +184,13 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#F5FCFF',
         width: '100%',
-        // marginBottom:50,
     },
 
     loginPage: {
         flex: 1,
         backgroundColor: '#F5FCFF',
         width: '100%',
-        justifyContent: 'center',
-
+        overflow: 'scroll'
     },
     button: {
         width: '80%',
@@ -178,21 +214,9 @@ const styles = StyleSheet.create({
         padding: 5,
     },
     card: {
-        // alignItems: 'center',
-        // justifyContent: 'center',
         width: '95%',
         margin: 5,
     },
-
-    // label: {
-    //     fontWeight: '500',
-    //     fontSize: 12,
-    //     margin: 2,
-    // },
-    // name: {
-    //     textAlign: 'center',
-    //     marginTop: 15,
-    // },
     text: {
         textAlign: 'left',
         fontSize: 14
