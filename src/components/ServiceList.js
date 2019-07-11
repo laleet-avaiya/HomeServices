@@ -75,7 +75,7 @@ export default class ServiceList extends React.Component {
     static navigationOptions = {
         // title:this.state.address,
         headerStyle: {
-            display: 'none',
+            // display: 'none',
         },
     };
 

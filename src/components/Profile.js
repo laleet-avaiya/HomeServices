@@ -23,7 +23,7 @@ const user = {
 
 class Profile extends React.Component {
     static navigationOptions = {
-        title: 'Home',
+        title: 'Profile',
         headerStyle: {
             display: 'none',
         },
@@ -148,7 +148,7 @@ class Profile extends React.Component {
 
 const AppNavigator = createStackNavigator({
     Profile: {
-        screen: Profile
+        screen: Profile,
     },
     Login: {
         screen: Login,
@@ -157,18 +157,25 @@ const AppNavigator = createStackNavigator({
         screen: Signup,
     },
     UserDetail: {
-        screen: UserDetail
+        screen: UserDetail,
     },
     ForgotPassword: {
         screen: ForgotPassword,
     },
 },
-    {
-        navigationOptions: ({ navigation }) => ({
-            tabBarVisible: false,
-        })
-    }
 );
+
+
+// Profile.navigationOptions = ({ navigation }) => {
+//     let tabBarVisible = true;
+//     if (navigation.state.index > 0) {
+//       tabBarVisible = false;
+//     }
+  
+//     return {
+//       tabBarVisible,
+//     };
+//   };
 
 export default createAppContainer(AppNavigator);
 

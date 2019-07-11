@@ -9,31 +9,32 @@ import ServiceHistory from './src/components/ServiceHistory'
 import HelpCenter from './src/components/HelpCenter'
 import Profile from './src/components/Profile';
 import BottomNav from './src/components/BottomNav'
+import Login from './src/components/Login';
+import Signup from './src/components/Signup';
+import UserDetail from './src/components/UserDetail'
+import ForgotPassword from './src/components/ForgotPassword';
 
 
 
 const TabNavigator = createBottomTabNavigator({
-  Home:
-  {
+  Home: {
     screen: Home,
   },
-  MyBookings:
-  {
+  MyBookings: {
     screen: ServiceHistory,
   },
-
-  HelpCenter:
-  {
+  HelpCenter: {
     screen: HelpCenter,
   },
-  Profile:
-  {
+  Profile: {
     screen: Profile,
-  }
-}, {
+  },
+
+},
+  {
     defaultNavigationOptions: ({ navigation }) => ({
       // keyboardHidesTabBar: false,
-      // tabBarVisible:false,
+      tabBarVisible: navigation.state.index > 0 ? false : true,
       tabBarIcon: ({ focused, horizontal, tintColor }) => {
         const { routeName } = navigation.state;
         let iconName;
@@ -48,12 +49,17 @@ const TabNavigator = createBottomTabNavigator({
         else if (routeName === 'Profile') {
           iconName = 'account-box';
         }
+        else {
+          return;
+        }
         // You can return any component that you like here!
         const color = focused ? '#ff861b' : 'gray';
         const size = focused ? 26 : 24;
         return <Icon name={iconName} color={color} size={size} />;
       },
     }),
+
+
     tabBarOptions: {
       keyboardHidesTabBar: true,
       activeTintColor: '#ff861b',
@@ -62,31 +68,5 @@ const TabNavigator = createBottomTabNavigator({
   })
 
 
+
 export default createAppContainer(TabNavigator);
-
-
-
-
-// const AppNavigator = createStackNavigator({
-
-//   Login: {
-//     screen: Login,
-//   },
-//   Signup: {
-//     screen: Signup,
-//   },
-//   UserDetail: {
-//     screen: UserDetail
-//   },
-//   BottomNav: {
-//     screen: BottomNav,
-//   },
-// },
-//   {
-//     initialRouteName: 'BottomNav',
-//   });
-
-
-
-
-// export default createAppContainer(AppNavigator);
