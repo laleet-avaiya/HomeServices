@@ -125,13 +125,13 @@ const AppNavigator = createStackNavigator({
     ForgotPassword: {
         screen: ForgotPassword,
     },
-    ChangePassword:{
-        screen:ChangePassword,
-    }
-}, {
-        initialRouteName: 'Profile',
-    });
-
+  
+}, 
+{
+    navigationOptions: ({ navigation }) => ({
+        tabBarVisible: false,
+    })
+});
 export default createAppContainer(AppNavigator);
 
 
