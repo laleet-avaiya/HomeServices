@@ -56,6 +56,8 @@ class Home extends React.Component {
 
                 <View style={styles.container}>
 
+                   
+
                     <View style={{ backgroundColor: '#ff861b', }}>
 
                         <Input

@@ -1,8 +1,9 @@
 import React from 'react';
-import { Modal, Text, Image, StyleSheet, TextInput, TouchableHighlight, ActivityIndicator, View, Alert } from 'react-native';
+import { Modal, Text, Image, StyleSheet, TouchableHighlight, ActivityIndicator, View, Alert } from 'react-native';
 import { SearchBar, Card, ListItem, Button, Icon, Badge, withBadge } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
 import DateTimePicker from "react-native-modal-datetime-picker";
+import { TextInput, Searchbar } from 'react-native-paper';
 import axios from 'axios';
 
 
@@ -21,6 +22,7 @@ export default class ServiceList extends React.Component {
             msg: '',
             address: this.props.navigation.state.params.user.address,
             client_id: this.props.navigation.state.params.user._id,
+            work: '',
         };
     }
 
@@ -75,7 +77,7 @@ export default class ServiceList extends React.Component {
     static navigationOptions = {
         // title:this.state.address,
         headerStyle: {
-            // display: 'none',
+            display: 'none',
         },
     };
 
@@ -86,45 +88,105 @@ export default class ServiceList extends React.Component {
         });
     }
 
+    handleChangeWork(text) {
+
+        this.setState({
+            work: text
+        });
+    }
+
+
 
     render() {
 
         const { navigate } = this.props.navigation;
         const { _id, service_tnc, service_charge, service_name } = this.props.navigation.state.params.service;
-        const { date, address, waiting, msg } = this.state;
+        const { date, address, waiting, msg, work } = this.state;
 
 
         return (
+
+
             <ScrollView>
 
-                <Text style={styles.title}>{service_name}</Text>
+
+
+                <View style={{ backgroundColor: '#ff861b', height: 62, overflow: 'scroll' }} >
+                    <Text style={{ fontSize: 18, position: 'absolute', left: 15, top: 15, fontWeight: 'bold', color: 'white' }}>{service_name}</Text>
+                    {/* <Text
+                            style={{ position: 'absolute', textAlign: 'center', right: 15, top: 15, width: 60, color: 'white', padding: 5, borderColor: 'white', borderWidth: 1, borderRadius: 3 }}
+                            onPress={() => navigate({ routeName: 'Login', params: { loginHandler: this.loginHandler } })}
+                        >{service_name}</Text> */}
+                </View>
+
+
 
                 <View style={styles.container}>
 
 
-                    <Card title="Terms & Conditions" titleStyle={{ textAlign: "left" }}>
+                    {/* <Card title="Terms & Conditions" titleStyle={{ textAlign: "left" }}>
                         <Text style={styles.title1}>{service_tnc}</Text>
-                    </Card>
+                    </Card> */}
 
-                    <Card title="Visiting Charge" titleStyle={{ textAlign: "left" }}>
-                        <Text style={styles.title1}> $ {service_charge}</Text>
-                    </Card>
+                    <TextInput
+                        multiline={true}
+                        numberOfLines={10}
+                        label="Work Description"
+                        name="work"
+                        value={work}
+                        mode="outlined"
+                        onChangeText={(text) => this.handleChangeWork(text)}
+                        style={{ height: 100, width: '90%', alignSelf: 'center' }}
+                    >
+                    </TextInput>
 
-                    <Card title="Address" titleStyle={{ textAlign: "left" }}>
-                        <TextInput
-                            multiline={true}
-                            numberOfLines={10}
-                            defaultValue={address}
-                            name="address"
-                            onChangeText={(text) => this.handleChange(text)}
-                            style={{ height: 100, textAlignVertical: 'top', borderColor: "gray", borderWidth: 1, borderStyle: 'dashed' }}></TextInput>
-                    </Card>
+
+
+                    <TextInput
+                        multiline={true}
+                        numberOfLines={10}
+                        label="Address"
+                        name="address"
+                        value={address}
+                        mode="outlined"
+                        underlineColorAndroid="#ff861b"
+                        underlineColor="#ff861b"
+                        onChangeText={(text) => this.handleChange(text)}
+                        style={{ height: 100, width: '90%', alignSelf: 'center' }}
+                    >
+                    </TextInput>
+
+
+                    <TextInput
+                        label="Visiting Charge"
+                        value={service_charge}
+                        name="address"
+                        mode="outlined"
+                        editable={false}
+                        disabled
+                        onChangeText={(text) => this.handleChange(text)}
+                        style={{ width: '90%', alignSelf: 'center', marginTop: 10 }}
+                    >
+                    </TextInput>
+
 
 
                     {date ?
-                        (<Card title="Date & Time" titleStyle={{ textAlign: "left" }}>
-                            <Text style={styles.title1}> {date.toString()}</Text>
-                        </Card>
+                        (
+                            <TextInput
+                                label="Date & Time"
+                                value={date.toString()}
+                                name="address"
+                                mode="outlined"
+                                editable={false}
+                                disabled
+                                onChangeText={(text) => this.handleChange(text)}
+                                style={{ width: '90%', alignSelf: 'center', marginTop: 10 }}
+                            >
+                            </TextInput>
+
+
+
                         ) :
                         (<Text></Text>)
                     }
@@ -133,7 +195,7 @@ export default class ServiceList extends React.Component {
 
                     <Button
                         title="Select Date & Time"
-                        titleStyle={{ color: '#4CAF50' }}
+                        titleStyle={{ color: '#ff861b' }}
                         buttonStyle={styles.buttonDT}
                         onPress={this.showDatePicker}
                     />
@@ -142,13 +204,14 @@ export default class ServiceList extends React.Component {
                         onConfirm={this.handleDatePicked}
                         onCancel={this.hideDatePicker}
                         mode='datetime'
+                        titleStyle={{ backgroundColor: "#ff861b" }}
                     />
 
 
                     {date ?
                         (<Button
                             title="Book"
-                            titleStyle={{ color: '#4CAF50' }}
+                            titleStyle={{ color: '#ff861b' }}
                             buttonStyle={styles.buttonDT}
                             onPress={() => this.bookingHandler(_id, date)}>
                         </Button>
@@ -156,7 +219,7 @@ export default class ServiceList extends React.Component {
                     }
                     {waiting ? (
                         <View style={styles.ActivityContainer}>
-                            <ActivityIndicator size="large" color="#007ceb" />
+                            <ActivityIndicator size="large" color="#ff861b"/>
                         </View>) : (<Text></Text>)
                     }
 
@@ -172,7 +235,8 @@ export default class ServiceList extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        width: '100%'
+        width: '100%',
+        marginTop: 30,
     },
     title: {
         fontSize: 20,
@@ -203,12 +267,13 @@ const styles = StyleSheet.create({
     },
     buttonDT: {
         backgroundColor: 'transparent',
-        borderColor: '#4CAF50',
+        borderColor: '#ff861b',
         borderWidth: 2,
         width: '60%',
         alignSelf: 'center',
         margin: 10,
-        borderRadius: 0,
+        borderRadius: 10,
+
     },
     msg: {
         fontSize: 12,
