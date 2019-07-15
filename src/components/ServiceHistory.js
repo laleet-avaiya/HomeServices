@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { View, Text, Image, StyleSheet, TextInput, ActivityIndicator } from 'react-native';
-import { SearchBar, Card, ListItem, Button, Icon, Badge, withBadge } from 'react-native-elements';
-import { List, Colors } from 'react-native-paper';
-import { ScrollView } from 'react-native-gesture-handler';
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation';
+
+import { View, Text, Image, StyleSheet, TextInput, ActivityIndicator } from 'react-native';
+import { SearchBar, Card, ListItem, Button, Icon, } from 'react-native-elements';
+import { List, Colors ,Badge} from 'react-native-paper';
+import { ScrollView } from 'react-native-gesture-handler';
 
 import Login from './Login';
 import Signup from './Signup';
@@ -14,14 +15,16 @@ const HistoryData = [
         name: 'Raju Painter',
         type: 'Painter',
         date: '26 June 2019',
-        phone: '+91-88985-68974'
+        phone: '+91-88985-68974',
+        status: 0,
     },
 
     {
         name: 'Ankit Parajapati',
         type: 'Appliance & Electronic Repair',
         date: '27 June 2019',
-        phone: '+91-88985-68974'
+        phone: '+91-88985-68974',
+        status: "Completed",
     },
 
 
@@ -29,7 +32,8 @@ const HistoryData = [
         name: 'Mehul Rana',
         type: 'Laptop Repair',
         date: '28 June 2019',
-        phone: '+91-88985-68974'
+        phone: '+91-88985-68974',
+        status: "Completed",
     },
 
 
@@ -37,7 +41,8 @@ const HistoryData = [
         name: 'Animesh Rana',
         type: 'Carpenter',
         date: '29 June 2019',
-        phone: '+91-88985-68974'
+        phone: '+91-88985-68974',
+        status: "Completed",
     },
 
 
@@ -45,7 +50,8 @@ const HistoryData = [
         name: 'Raj Mehta',
         type: 'Painter',
         date: '20 June 2019',
-        phone: '+91-88985-68974'
+        phone: '+91-88985-68974',
+        status: "Completed",
     },
 
 
@@ -54,7 +60,8 @@ const HistoryData = [
         name: 'Johan Martin',
         type: 'Plumber',
         date: '22 June 2019',
-        phone: '+91-88985-68974'
+        phone: '+91-88985-68974',
+        status: "Completed",
     },
 
 
@@ -63,7 +70,8 @@ const HistoryData = [
         name: 'Anjli Parajapati',
         type: 'Electrician',
         date: '28 June 2019',
-        phone: '+91-88985-68974'
+        phone: '+91-88985-68974',
+        status: "Completed",
     },
 ]
 
@@ -124,8 +132,7 @@ class ServiceHistory extends React.Component {
                                 HistoryData.map((u, i) => {
                                     return (
                                         <Card key={i} title={'Worker Name:' + u.name} titleStyle={{ textAlign: 'left', fontSize: 14 }} containerStyle={styles.card} >
-                                            {/* <Card title={'Worker Name:' + u.name} titleStyle={styles.text}><Text>{user.email}</Text></Card> */}
-                                            {/* <Text style={styles.label}>Worker Name: {u.name}</Text> */}
+                                            <Badge  style={{borderRadius:10,backgroundColor:u.status?"green":"orange",position:"absolute",top:0,right:0}}>{u.status?"Completed":"Pending"}</Badge>
                                             <Text style={styles.label}>Service Type: {u.type}</Text>
                                             <Text style={styles.label}>Date: {u.date}</Text>
                                             <Text style={styles.label}>Contact Number: {u.phone}</Text>

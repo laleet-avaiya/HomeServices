@@ -1,6 +1,9 @@
 import React from 'react';
 import { Modal, Text, Image, StyleSheet, TouchableHighlight, ActivityIndicator, View, Alert } from 'react-native';
-import { SearchBar, Card, ListItem, Button, Icon, Badge, withBadge } from 'react-native-elements';
+import { SearchBar, Card, ListItem, Button, Badge, withBadge, Input } from 'react-native-elements';
+
+
+
 import { ScrollView } from 'react-native-gesture-handler';
 import DateTimePicker from "react-native-modal-datetime-picker";
 import { TextInput, Searchbar } from 'react-native-paper';
@@ -77,7 +80,8 @@ export default class ServiceList extends React.Component {
     static navigationOptions = {
         // title:this.state.address,
         headerStyle: {
-            display: 'none',
+            // display: 'none',
+            backgroundColor: "#ff861b",
         },
     };
 
@@ -111,22 +115,17 @@ export default class ServiceList extends React.Component {
 
 
 
-                <View style={{ backgroundColor: '#ff861b', height: 62, overflow: 'scroll' }} >
+                {/* <View style={{ backgroundColor: '#ff861b', height: 62, overflow: 'scroll' }} >
                     <Text style={{ fontSize: 18, position: 'absolute', left: 15, top: 15, fontWeight: 'bold', color: 'white' }}>{service_name}</Text>
-                    {/* <Text
+                    <Text
                             style={{ position: 'absolute', textAlign: 'center', right: 15, top: 15, width: 60, color: 'white', padding: 5, borderColor: 'white', borderWidth: 1, borderRadius: 3 }}
                             onPress={() => navigate({ routeName: 'Login', params: { loginHandler: this.loginHandler } })}
-                        >{service_name}</Text> */}
-                </View>
+                        >{service_name}</Text>
+                </View> */}
 
 
 
                 <View style={styles.container}>
-
-
-                    {/* <Card title="Terms & Conditions" titleStyle={{ textAlign: "left" }}>
-                        <Text style={styles.title1}>{service_tnc}</Text>
-                    </Card> */}
 
                     <TextInput
                         multiline={true}
@@ -152,7 +151,7 @@ export default class ServiceList extends React.Component {
                         underlineColorAndroid="#ff861b"
                         underlineColor="#ff861b"
                         onChangeText={(text) => this.handleChange(text)}
-                        style={{ height: 100, width: '90%', alignSelf: 'center' }}
+                        style={{ height: 100, width: '90%', alignSelf: 'center', marginTop: 8, }}
                     >
                     </TextInput>
 
@@ -207,7 +206,6 @@ export default class ServiceList extends React.Component {
                         titleStyle={{ backgroundColor: "#ff861b" }}
                     />
 
-
                     {date ?
                         (<Button
                             title="Book"
@@ -219,7 +217,7 @@ export default class ServiceList extends React.Component {
                     }
                     {waiting ? (
                         <View style={styles.ActivityContainer}>
-                            <ActivityIndicator size="large" color="#ff861b"/>
+                            <ActivityIndicator size="large" color="#ff861b" />
                         </View>) : (<Text></Text>)
                     }
 
@@ -236,7 +234,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         width: '100%',
-        marginTop: 30,
+        marginTop: 20,
     },
     title: {
         fontSize: 20,

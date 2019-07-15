@@ -13,12 +13,13 @@ import Login from './src/components/Login';
 import Signup from './src/components/Signup';
 import UserDetail from './src/components/UserDetail'
 import ForgotPassword from './src/components/ForgotPassword';
+import MainPage from './src/components/MainPage';
 
 
 
 const TabNavigator = createBottomTabNavigator({
   Home: {
-    screen: Home,
+    screen: MainPage,
   },
   MyBookings: {
     screen: ServiceHistory,
