@@ -115,7 +115,7 @@ class Home extends React.Component {
         else {
             return (
                 <View style={styles.ActivityContainer}>
-                    <ActivityIndicator size="large" color="#007ceb" />
+                    <ActivityIndicator size="large" color="#ff861b" />
                 </View>
             )
         }
