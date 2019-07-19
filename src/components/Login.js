@@ -8,6 +8,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 const logo = require('../assets/logo.png');
 const backgroundImage = require('../assets/back.png');
+import ServiceList from './ServiceList';
 
 
 export default class Login extends React.Component {
@@ -89,7 +90,8 @@ export default class Login extends React.Component {
                         />
 
                         <Button title="Login" buttonStyle={styles.button}
-                            onPress={ () => { loginHandler();  this.props.navigation.pop(1) } } 
+                            // onPress={() => { loginHandler(); navigate({ routeName: 'ServiceList', }) }}
+                            onPress={() => { loginHandler(); this.props.navigation.pop(1) }}
                         ></Button>
 
                         <View style={{ alignSelf: 'center', textAlign: 'center', flex: 1, alignContent: 'space-between', justifyContent: 'center' }}>

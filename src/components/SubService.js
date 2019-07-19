@@ -4,9 +4,18 @@ import { ListItem } from 'react-native-elements'
 import ServiceList from './ServiceList';
 
 export default class SubService extends Component {
+
+    static navigationOptions = {
+        title:"SubServices",
+        headerTintColor: "white",
+        headerStyle: {
+            // display: 'none',
+            backgroundColor: "#ff861b",
+        },
+    };
     render() {
         const { navigate } = this.props.navigation;
-        const { service,changeLoginState,user } = this.props.navigation.state.params;
+        const { service, changeLoginState, user,login } = this.props.navigation.state.params;
 
 
         return (
@@ -18,8 +27,8 @@ export default class SubService extends Component {
                             leftAvatar={{ source: { uri: item.image_url } }}
                             title={item.title}
                             titleStyle={{ fontSize: 16, color: "black" }}
-                            onPress={() => { navigate({ routeName: 'ServiceList', params: { service: service, changeLoginState: changeLoginState,user: { _id: user._id, address: '874, Sector 2-C', description: item.title } } }) }}
-                            // onPress = { (e) => {changeLoginState("HEllo")}}
+                            onPress={() => { navigate({ routeName: 'ServiceList', params: { service: service,login:login, changeLoginState: changeLoginState,work:"Fan Repairing", user: { _id: "5d22f2fbe8292c00179c3333", address: '874, Sector 2-C', description: item.title } } }) }}
+                        // onPress = { (e) => {changeLoginState("HEllo")}}
                         />
                     ))
                 }

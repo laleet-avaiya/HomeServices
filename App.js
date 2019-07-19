@@ -30,6 +30,7 @@ const TabNavigator = createBottomTabNavigator({
   Profile: {
     screen: Profile,
   },
+  
 
 },
   {

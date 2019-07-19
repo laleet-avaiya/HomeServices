@@ -3,7 +3,7 @@ import { createAppContainer, createStackNavigator, StackActions, NavigationActio
 
 import { View, Text, Image, StyleSheet, TextInput, ActivityIndicator } from 'react-native';
 import { SearchBar, Card, ListItem, Button, Icon, } from 'react-native-elements';
-import { List, Colors ,Badge} from 'react-native-paper';
+import { List, Colors, Badge } from 'react-native-paper';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import Login from './Login';
@@ -132,7 +132,7 @@ export default class ServiceHistory extends React.Component {
                                 HistoryData.map((u, i) => {
                                     return (
                                         <Card key={i} title={'Worker Name:' + u.name} titleStyle={{ textAlign: 'left', fontSize: 14 }} containerStyle={styles.card} >
-                                            <Badge  style={{borderRadius:10,backgroundColor:u.status?"green":"orange",position:"absolute",top:0,right:0}}>{u.status?"Completed":"Pending"}</Badge>
+                                            <Badge style={{ borderRadius: 10, backgroundColor: u.status ? "green" : "orange", position: "absolute", top: 0, right: 0 }}>{u.status ? "Completed" : "Pending"}</Badge>
                                             <Text style={styles.label}>Service Type: {u.type}</Text>
                                             <Text style={styles.label}>Date: {u.date}</Text>
                                             <Text style={styles.label}>Contact Number: {u.phone}</Text>

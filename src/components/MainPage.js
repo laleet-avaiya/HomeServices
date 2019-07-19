@@ -293,7 +293,7 @@ class Home extends React.Component {
         },
     };
     render() {
-        const { search, data, user } = this.state;
+        const { search, data, user,login } = this.state;
         const { navigate } = this.props.navigation;
 
         if (data.length > 0) {
@@ -323,7 +323,7 @@ class Home extends React.Component {
                                     <Card
                                         key={obj.id}
                                         style={{ margin: 2, }}
-                                        onPress={() => { navigate({ routeName: 'SubService', params: { service: obj, userData: user, changeLoginState: this.changeLoginState, user: { _id: obj._id, address: 'Home' } } }) }}
+                                        onPress={() => { navigate({ routeName: 'SubService', params: { service: obj,login:login, userData: user, changeLoginState: this.changeLoginState, user: { _id: obj._id, address: 'Home' } } }) }}
                                     >
                                         <Text style={styles.leftText}>{obj.title}</Text>
                                         <Text style={styles.leftSubText}>{obj.sub_title}</Text>

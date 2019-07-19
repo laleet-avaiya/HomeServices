@@ -7,6 +7,8 @@ import DateTimePicker from "react-native-modal-datetime-picker";
 import { TextInput, Searchbar } from 'react-native-paper';
 import axios from 'axios';
 
+import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation';
+
 
 import Login from './Login';
 import Signup from './Signup';
@@ -15,12 +17,11 @@ import ForgotPassword from './ForgotPassword';
 
 
 
-
-
 export default class ServiceList extends React.Component {
 
     constructor(props) {
         super(props);
+
         this.state = {
             title: '',
             isDatePickerVisible: false,
@@ -28,20 +29,22 @@ export default class ServiceList extends React.Component {
             date: '',
             waiting: false,
             msg: '',
-            address: this.props.navigation.state.params.user.address,
-            client_id: this.props.navigation.state.params.user._id,
+            address: "Sector 2C",
+            client_id: '5d22f2fbe8292c00179c3333',
             work: '',
-            login: false,
+            login: '',
         };
     }
 
 
     static navigationOptions = {
-        // title:this.state.address,
+        title:"Booking",
+        headerTintColor: "white",
         headerStyle: {
             // display: 'none',
             backgroundColor: "#ff861b",
         },
+
     };
 
 
@@ -118,9 +121,9 @@ export default class ServiceList extends React.Component {
     render() {
 
         const { navigate } = this.props.navigation;
-        const { _id, service_tnc, service_charge, service_name } = this.props.navigation.state.params.service;
-        const { service, changeLoginState, user } = this.props.navigation.state.params;
-        const { login, date, address, waiting, msg, work } = this.state;
+        const {  service_tnc, service_charge, service_name } = this.props.navigation.state.params.service;
+        const { service, changeLoginState, user,work } = this.props.navigation.state.params;
+        const { login, date, address, waiting, msg, } = this.state;
 
         if (login) {
 
@@ -158,7 +161,8 @@ export default class ServiceList extends React.Component {
 
                         <TextInput
                             label="Visiting Charge"
-                            value={service_charge}
+                            // value={service_charge}
+                            value="$ 20"
                             name="address"
                             mode="outlined"
                             editable={false}
@@ -211,7 +215,7 @@ export default class ServiceList extends React.Component {
                                 title="Book"
                                 titleStyle={{ color: '#ff861b' }}
                                 buttonStyle={styles.buttonDT}
-                                onPress={() => this.bookingHandler(_id, date)}>
+                                onPress={() => this.bookingHandler(user._id, date)}>
                             </Button>
                             ) : (<Text style={styles.msg}>{msg}</Text>)
                         }
@@ -242,6 +246,34 @@ export default class ServiceList extends React.Component {
 
 
 
+// const AppNavigator = createStackNavigator({
+//     ServiceList: {
+//         screen: ServiceList,
+//         navigationOptions: {
+//             headerTitle: 'Choose Team',
+//             headerTintColor: 'white',
+//             headerStyle: {
+//                 backgroundColor: 'blue',
+//                 display:"none",
+//             }
+//         }
+//     },
+//     Login: {
+//         screen: Login,
+//     },
+//     Signup: {
+//         screen: Signup,
+//     },
+//     UserDetail: {
+//         screen: UserDetail,
+//     },
+//     ForgotPassword: {
+//         screen: ForgotPassword,
+//     },
+// });
+
+
+// export default createAppContainer(AppNavigator);
 
 const styles = StyleSheet.create({
     container: {
