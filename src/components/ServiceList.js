@@ -31,7 +31,7 @@ export default class ServiceList extends React.Component {
             msg: '',
             address: "Sector 2C",
             client_id: '5d22f2fbe8292c00179c3333',
-            work: '',
+            work: 'Fan Repairing',
             login: '',
         };
     }
@@ -122,8 +122,8 @@ export default class ServiceList extends React.Component {
 
         const { navigate } = this.props.navigation;
         const { service_tnc, service_charge, service_name } = this.props.navigation.state.params.service;
-        const { service, changeLoginState, user, work } = this.props.navigation.state.params;
-        const { login, date, address, waiting, msg, } = this.state;
+        const { service, changeLoginState, user, } = this.props.navigation.state.params;
+        const { login, date, address, waiting, msg,work, } = this.state;
 
         if (login) {
 
