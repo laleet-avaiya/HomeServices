@@ -33,37 +33,108 @@ const dataList = [
         title: "Electricians",
         url: "http://solvitnow.com/wp-content/uploads/2018/05/common-home-electrical-work.jpg",
         sub_title: "Service | Repair | Installation",
-        sub_ser_list: ['Fan,Iron'],
+        sub_ser_list: [
+            {
+                id: 1,
+                title: "AC Service and Repair",
+                image_url: "http://www.neweraprofessionalsdubai.com/wp-content/uploads/2018/11/ac-service1.jpg"
+            },
+            {
+                id: 2,
+                title: "Air Cooler Repair",
+                image_url: "http://www.neweraprofessionalsdubai.com/wp-content/uploads/2018/11/ac-service1.jpg"
+            }
+        ],
     },
     {
         id: 2,
         title: "Plumbing worker",
         url: "https://mrright.blob.core.windows.net/cdn/content/assets/2015-11/medium/e8b01d5d11a349389e97978152f76984-general%20plumbing%20work.jpg",
         sub_title: "Repair | Installation | Projects",
+        sub_ser_list: [
+            {
+                id: 1,
+                title: "AC Service and Repair",
+                image_url: "http://www.neweraprofessionalsdubai.com/wp-content/uploads/2018/11/ac-service1.jpg"
+            },
+            {
+                id: 2,
+                title: "Air Cooler Repair",
+                image_url: "http://www.neweraprofessionalsdubai.com/wp-content/uploads/2018/11/ac-service1.jpg"
+            }
+        ],
     },
     {
         id: 3,
         title: "Carpenter",
         url: "https://thenypost.files.wordpress.com/2015/07/shutterstock_131655707.jpg?quality=90&strip=all&w=618&h=410&crop=1",
         sub_title: "Repair | Projects",
+        sub_ser_list: [
+            {
+                id: 1,
+                title: "AC Service and Repair",
+                image_url: "http://www.neweraprofessionalsdubai.com/wp-content/uploads/2018/11/ac-service1.jpg"
+            },
+            {
+                id: 2,
+                title: "Air Cooler Repair",
+                image_url: "http://www.neweraprofessionalsdubai.com/wp-content/uploads/2018/11/ac-service1.jpg"
+            }
+        ],
     },
     {
         id: 4,
         title: "Painter",
         url: "https://img1.ibay.com.mv/is1/full/2019/04/item_2601576_769.jpg",
         sub_title: "Repaint | Project",
+        sub_ser_list: [
+            {
+                id: 1,
+                title: "AC Service and Repair",
+                image_url: "http://www.neweraprofessionalsdubai.com/wp-content/uploads/2018/11/ac-service1.jpg"
+            },
+            {
+                id: 2,
+                title: "Air Cooler Repair",
+                image_url: "http://www.neweraprofessionalsdubai.com/wp-content/uploads/2018/11/ac-service1.jpg"
+            }
+        ],
     },
     {
         id: 5,
         title: "Cleaning",
         url: "http://eulenmiddleast.com/wp-content/uploads/2017/02/cleaningservices.png",
         sub_title: "Bathroom | Sofa | Kitchen",
+        sub_ser_list: [
+            {
+                id: 1,
+                title: "AC Service and Repair",
+                image_url: "http://www.neweraprofessionalsdubai.com/wp-content/uploads/2018/11/ac-service1.jpg"
+            },
+            {
+                id: 2,
+                title: "Air Cooler Repair",
+                image_url: "http://www.neweraprofessionalsdubai.com/wp-content/uploads/2018/11/ac-service1.jpg"
+            }
+        ],
     },
     {
         id: 6,
         title: "Pest Control",
         url: "https://www.taskforce.com.au/image/pest-control/vic/whittlesea/taskforce-smoking-out-bugs/8746/",
         sub_title: "Service",
+        sub_ser_list: [
+            {
+                id: 1,
+                title: "AC Service and Repair",
+                image_url: "http://www.neweraprofessionalsdubai.com/wp-content/uploads/2018/11/ac-service1.jpg"
+            },
+            {
+                id: 2,
+                title: "Air Cooler Repair",
+                image_url: "http://www.neweraprofessionalsdubai.com/wp-content/uploads/2018/11/ac-service1.jpg"
+            }
+        ],
     },
 ]
 
@@ -125,14 +196,6 @@ class Home extends React.Component {
                             inputContainerStyle={{ borderBottomWidth: 0, }}
                             inputStyle={{ fontSize: 14, color: 'white', fontWeight: 'bold' }}
                             containerStyle={{ maxHeight: 32, alignSelf: 'flex-start', borderColor: 'white', borderWidth: 0, borderRadius: 10, marginLeft: 0 }}
-                            // leftIcon={
-                            //     <Icon
-                            //         name='location-arrow'
-                            //         size={18}
-                            //         color='white'
-                            //         style={{ padding: 0 }}
-                            //     />
-                            // }
                             editable={false}
                         />
                         <SearchBar
