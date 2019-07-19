@@ -5,7 +5,7 @@ import { SearchBar, ListItem, Input } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import SubService from './SubService';
-import Booking from './Booking';
+import ServiceList from './ServiceList';
 
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 
@@ -360,8 +360,8 @@ const AppNavigator = createStackNavigator({
     SubService: {
         screen: SubService,
     },
-    Booking: {
-        screen: Booking,
+    ServiceList: {
+        screen: ServiceList,
     }
 }, {
         initialRouteName: 'Home',
