@@ -2,8 +2,6 @@ import React from 'react';
 import { Modal, Text, Image, StyleSheet, TouchableHighlight, ActivityIndicator, View, Alert } from 'react-native';
 import { SearchBar, Card, ListItem, Button, Badge, withBadge, Input } from 'react-native-elements';
 
-
-
 import { ScrollView } from 'react-native-gesture-handler';
 import DateTimePicker from "react-native-modal-datetime-picker";
 import { TextInput, Searchbar } from 'react-native-paper';
@@ -16,7 +14,6 @@ export default class ServiceList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
             title: '',
             isDatePickerVisible: false,
             isTimePickerVisible: false,
@@ -30,6 +27,13 @@ export default class ServiceList extends React.Component {
     }
 
 
+    static navigationOptions = {
+        // title:this.state.address,
+        headerStyle: {
+            // display: 'none',
+            backgroundColor: "#ff861b",
+        },
+    };
 
 
     showDatePicker = () => {
@@ -77,13 +81,10 @@ export default class ServiceList extends React.Component {
     }
 
 
-    static navigationOptions = {
-        // title:this.state.address,
-        headerStyle: {
-            // display: 'none',
-            backgroundColor: "#ff861b",
-        },
-    };
+
+
+
+
 
     handleChange(text) {
 
@@ -113,8 +114,6 @@ export default class ServiceList extends React.Component {
 
             <ScrollView>
 
-
-
                 {/* <View style={{ backgroundColor: '#ff861b', height: 62, overflow: 'scroll' }} >
                     <Text style={{ fontSize: 18, position: 'absolute', left: 15, top: 15, fontWeight: 'bold', color: 'white' }}>{service_name}</Text>
                     <Text
@@ -122,8 +121,6 @@ export default class ServiceList extends React.Component {
                             onPress={() => navigate({ routeName: 'Login', params: { loginHandler: this.loginHandler } })}
                         >{service_name}</Text>
                 </View> */}
-
-
 
                 <View style={styles.container}>
 
@@ -138,7 +135,6 @@ export default class ServiceList extends React.Component {
                         style={{ height: 100, width: '90%', alignSelf: 'center' }}
                     >
                     </TextInput>
-
 
 
                     <TextInput

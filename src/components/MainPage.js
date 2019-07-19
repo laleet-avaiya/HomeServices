@@ -1,13 +1,12 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation';
-import { SearchBar, ListItem, Input } from 'react-native-elements';
+import { SearchBar, Input } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import SubService from './SubService';
 import ServiceList from './ServiceList';
 
-import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
+import { Card, } from 'react-native-paper';
 
 const dataList = [
     {
@@ -256,6 +255,7 @@ class Home extends React.Component {
             user: false,
             search: '',
             data: [],
+            login: ''
         };
     }
 
@@ -270,8 +270,6 @@ class Home extends React.Component {
                 console.error(error);
             });
     }
-
-
 
     updateSearch = search => {
         this.setState({ search });
@@ -294,14 +292,10 @@ class Home extends React.Component {
 
         if (data.length > 0) {
             return (
-
                 <View style={styles.container}>
-
-
                     <View style={{ backgroundColor: '#ff861b', }}>
-
                         <Input
-                            value='Welcome' /*'Gandhinagar, Gujarat, India' */
+                            value='Welcome'
                             underlineColorAndroid={'transparent'}
                             inputContainerStyle={{ borderBottomWidth: 0, }}
                             inputStyle={{ fontSize: 14, color: 'white', fontWeight: 'bold' }}
@@ -316,7 +310,6 @@ class Home extends React.Component {
                             inputContainerStyle={{ backgroundColor: 'white', borderBottomColor: '#607fa7', borderTopColor: '#607fa7', }}
                         />
                     </View>
-
                     <ScrollView style={{ flex: 1, flexDirection: "column", width: "100%", padding: 5 }}>
                         {
                             dataList.map((obj) => {
@@ -324,9 +317,7 @@ class Home extends React.Component {
                                     <Card
                                         key={obj.id}
                                         style={{ margin: 2, }}
-                                        onPress={() => { navigate({ routeName: 'SubService', params: { service: obj, user: { _id: null, address: 'Home' } } }) }}
-                                    // onPress={() => { navigate({ routeName: 'ServiceList', params: { service: obj, user: { _id: null, address: 'Home' } } }) }}
-
+                                        onPress={() => { navigate({ routeName: 'SubService', params: { service: obj, user: { _id: obj._id, address: 'Home' } } }) }}
                                     >
                                         <Text style={styles.leftText}>{obj.title}</Text>
                                         <Text style={styles.leftSubText}>{obj.sub_title}</Text>
@@ -346,12 +337,8 @@ class Home extends React.Component {
                 </View>
             )
         }
-
     }
 }
-
-
-
 
 const AppNavigator = createStackNavigator({
     Home: {
@@ -367,14 +354,7 @@ const AppNavigator = createStackNavigator({
         initialRouteName: 'Home',
     });
 
-
-
-
 export default createAppContainer(AppNavigator);
-
-
-
-
 
 const styles = StyleSheet.create({
     ActivityContainer: {

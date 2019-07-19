@@ -86,7 +86,7 @@ export default class Login extends React.Component {
                             }
                             onChangeText={val => this.onChangeText("password", val)}
                         />
-                        {/* <Button title="Login" buttonStyle={styles.button} ></Button> */}
+
                         <Button title="Login" buttonStyle={styles.button} onPress={() => { this.setState({ user: true }) }}></Button>
 
                         <View style={{ alignSelf: 'center', textAlign: 'center', flex: 1, alignContent: 'space-between', justifyContent: 'center' }}>
@@ -108,7 +108,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         width: '100%',
-        // backgroundColor:'rgba(255, 0, 0, 0.3)',
     },
     linearGradient: {
         flex: 1,
