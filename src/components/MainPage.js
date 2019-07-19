@@ -6,6 +6,12 @@ import { ScrollView } from 'react-native-gesture-handler';
 import SubService from './SubService';
 import ServiceList from './ServiceList';
 
+import Login from './Login';
+import Signup from './Signup';
+import UserDetail from './UserDetail'
+import ForgotPassword from './ForgotPassword';
+
+
 import { Card, } from 'react-native-paper';
 
 const dataList = [
@@ -252,6 +258,7 @@ class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            login:false,
             user: false,
             search: '',
             data: [],
@@ -355,7 +362,19 @@ const AppNavigator = createStackNavigator({
     },
     ServiceList: {
         screen: ServiceList,
-    }
+    },
+    Login: {
+        screen: Login,
+    },
+    Signup: {
+        screen: Signup,
+    },
+    UserDetail: {
+        screen: UserDetail,
+    },
+    ForgotPassword: {
+        screen: ForgotPassword,
+    },
 }, {
         initialRouteName: 'Home',
     });

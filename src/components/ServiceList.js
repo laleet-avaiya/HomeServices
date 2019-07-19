@@ -97,7 +97,7 @@ export default class ServiceList extends React.Component {
 
     loginHandler = () => {
         this.setState({ login: true, user: {} });
-        alert(this.state.login);
+        // alert(this.state.login);
     }
 
 
@@ -231,10 +231,10 @@ export default class ServiceList extends React.Component {
         } else {
             return (
                 <ScrollView contentContainerStyle={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} >
-
-                    <Text>HEllo</Text>
+                <Text style={{fontSize:30,fontWeight:'bold',color:"gray",}}>Your are not Logged In </Text>
+                <Text style={{fontSize:30,fontWeight:'bold',color:"gray",marginBottom:50}}>Login First...</Text>
                     <Text
-                        style={{ position: 'absolute', textAlign: 'center', right: 15, top: 15, width: 60, color: 'black', padding: 5, borderColor: 'black', borderWidth: 1, borderRadius: 3 }}
+                        style={{fontWeight:'700', textAlign:'center', width: 90, color: 'black', padding: 15, borderColor: 'black', borderWidth: 1, borderRadius: 3 }}
                         onPress={() => navigate({ routeName: 'Login', params: { loginHandler: this.loginHandler } })}
                     >LOGIN</Text>
 
