@@ -64,6 +64,67 @@ const dataList = [
         ],
     },
     {
+        id: 6,
+        title: "Pest Control",
+        url: "https://www.taskforce.com.au/image/pest-control/vic/whittlesea/taskforce-smoking-out-bugs/8746/",
+        sub_title: "Service",
+        sub_ser_list: [
+            {
+                id: 2,
+                title: "Pest Control Services For Cockroach",
+                image_url: "https://beebes.com/wp-content/uploads/2018/07/Cockroach-Pest-Control.jpg"
+            },
+            {
+                id: 3,
+                title: "Pest Control Services For Mosquito",
+                image_url: "https://smarterpestcontrol.com/wp-content/uploads/2017/08/Mosquito-on-Skin-with-Green-Background-500x300.jpg"
+            },
+            {
+                id: 4,
+                title: "Pest Control Services For Garden",
+                image_url: "http://www.ecohomeideas.com/wp-content/uploads/2015/02/pest-control-eco-friendly-way.jpg"
+            }
+        ],
+    },
+    {
+        id: 5,
+        title: "Cleaning",
+        url: "http://eulenmiddleast.com/wp-content/uploads/2017/02/cleaningservices.png",
+        sub_title: "Bathroom | Sofa | Kitchen",
+        sub_ser_list: [
+            {
+                id: 1,
+                title: "Sofa Cleaning",
+                image_url: "https://3.imimg.com/data3/LL/IV/MY-10315455/sofa-shampooing-500x500.jpg"
+            },
+            {
+                id: 2,
+                title: "Bathroom Cleaning",
+                image_url: "http://mit24h.com/g/2/ti/tiles-floor-designs-youtube-small-bathroom-ideas-photo-gallery-comfort-room-design-layout-tool-free-color-trends-interior-india-best-paint-colors-popular.jpg"
+            },
+            {
+                id: 3,
+                title: "Home Deep Cleaning",
+                image_url: "https://tullyscleaning.com/wp-content/uploads/shutterstock_386746354.jpg"
+            },
+            {
+                id: 4,
+                title: "Kitchen  Deep Cleaning",
+                image_url: "http://static.oprah.com/images/o2/201405/201405-orig-cleanup-trash-949x534.jpg"
+            },
+            {
+                id: 5,
+                title: "Carpet Cleaning",
+                image_url: "https://cherrycarpetcleaning.co.uk/wp-content/uploads/2018/05/2-450x300.jpg"
+            },
+            {
+                id: 6,
+                title: "Car Cleaning",
+                image_url: "https://www.uk-blog.com/wp-content/uploads/Car-Wash.jpg"
+            }
+        ],
+    },
+    {
         id: 1,
         title: "Electricians",
         url: "http://solvitnow.com/wp-content/uploads/2018/05/common-home-electrical-work.jpg",
@@ -190,67 +251,8 @@ const dataList = [
             }
         ],
     },
-    {
-        id: 5,
-        title: "Cleaning",
-        url: "http://eulenmiddleast.com/wp-content/uploads/2017/02/cleaningservices.png",
-        sub_title: "Bathroom | Sofa | Kitchen",
-        sub_ser_list: [
-            {
-                id: 1,
-                title: "Sofa Cleaning",
-                image_url: "https://3.imimg.com/data3/LL/IV/MY-10315455/sofa-shampooing-500x500.jpg"
-            },
-            {
-                id: 2,
-                title: "Bathroom Cleaning",
-                image_url: "http://mit24h.com/g/2/ti/tiles-floor-designs-youtube-small-bathroom-ideas-photo-gallery-comfort-room-design-layout-tool-free-color-trends-interior-india-best-paint-colors-popular.jpg"
-            },
-            {
-                id: 3,
-                title: "Home Deep Cleaning",
-                image_url: "https://tullyscleaning.com/wp-content/uploads/shutterstock_386746354.jpg"
-            },
-            {
-                id: 4,
-                title: "Kitchen  Deep Cleaning",
-                image_url: "http://static.oprah.com/images/o2/201405/201405-orig-cleanup-trash-949x534.jpg"
-            },
-            {
-                id: 5,
-                title: "Carpet Cleaning",
-                image_url: "https://cherrycarpetcleaning.co.uk/wp-content/uploads/2018/05/2-450x300.jpg"
-            },
-            {
-                id: 6,
-                title: "Car Cleaning",
-                image_url: "https://www.uk-blog.com/wp-content/uploads/Car-Wash.jpg"
-            }
-        ],
-    },
-    {
-        id: 6,
-        title: "Pest Control",
-        url: "https://www.taskforce.com.au/image/pest-control/vic/whittlesea/taskforce-smoking-out-bugs/8746/",
-        sub_title: "Service",
-        sub_ser_list: [
-            {
-                id: 2,
-                title: "Pest Control Services For Cockroach",
-                image_url: "https://beebes.com/wp-content/uploads/2018/07/Cockroach-Pest-Control.jpg"
-            },
-            {
-                id: 3,
-                title: "Pest Control Services For Mosquito",
-                image_url: "https://smarterpestcontrol.com/wp-content/uploads/2017/08/Mosquito-on-Skin-with-Green-Background-500x300.jpg"
-            },
-            {
-                id: 4,
-                title: "Pest Control Services For Garden",
-                image_url: "http://www.ecohomeideas.com/wp-content/uploads/2015/02/pest-control-eco-friendly-way.jpg"
-            }
-        ],
-    },
+
+
 ]
 
 class Home extends React.Component {
@@ -258,12 +260,12 @@ class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            login:false,
+            login: false,
             user: false,
             search: '',
             data: [],
             login: '',
-            userData:'',
+            userData: '',
         };
         this.changeLoginState = this.changeLoginState.bind(this);
     }
@@ -300,7 +302,7 @@ class Home extends React.Component {
         },
     };
     render() {
-        const { search, data, user,login } = this.state;
+        const { search, data, user, login } = this.state;
         const { navigate } = this.props.navigation;
 
         if (data.length > 0) {
@@ -330,7 +332,7 @@ class Home extends React.Component {
                                     <Card
                                         key={obj.id}
                                         style={{ margin: 2, }}
-                                        onPress={() => { navigate({ routeName: 'SubService', params: { service: obj,login:login, userData: user, changeLoginState: this.changeLoginState, user: { _id: obj._id, address: 'Home' } } }) }}
+                                        onPress={() => { navigate({ routeName: 'SubService', params: { service: obj, login: login, userData: user, changeLoginState: this.changeLoginState, user: { _id: obj._id, address: 'Home' } } }) }}
                                     >
                                         <Text style={styles.leftText}>{obj.title}</Text>
                                         <Text style={styles.leftSubText}>{obj.sub_title}</Text>
