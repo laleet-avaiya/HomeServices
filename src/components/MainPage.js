@@ -249,16 +249,22 @@ const dataList = [
 
 class Home extends React.Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             user: false,
             search: '',
             data: [],
-            login: ''
+            login: '',
+            userData:'',
         };
+        this.changeLoginState = this.changeLoginState.bind(this);
     }
 
+    async changeLoginState(msg) {
+        await this.setState({ userData: msg });
+        alert(this.state.userData);
+    }
 
     async componentWillMount() {
         await fetch('https://admin-service87.herokuapp.com/services/')
@@ -287,7 +293,7 @@ class Home extends React.Component {
         },
     };
     render() {
-        const { search, data } = this.state;
+        const { search, data, user } = this.state;
         const { navigate } = this.props.navigation;
 
         if (data.length > 0) {
@@ -317,7 +323,7 @@ class Home extends React.Component {
                                     <Card
                                         key={obj.id}
                                         style={{ margin: 2, }}
-                                        onPress={() => { navigate({ routeName: 'SubService', params: { service: obj, user: { _id: obj._id, address: 'Home' } } }) }}
+                                        onPress={() => { navigate({ routeName: 'SubService', params: { service: obj, userData: user, changeLoginState: this.changeLoginState, user: { _id: obj._id, address: 'Home' } } }) }}
                                     >
                                         <Text style={styles.leftText}>{obj.title}</Text>
                                         <Text style={styles.leftSubText}>{obj.sub_title}</Text>

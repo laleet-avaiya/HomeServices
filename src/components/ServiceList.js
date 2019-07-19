@@ -8,6 +8,14 @@ import { TextInput, Searchbar } from 'react-native-paper';
 import axios from 'axios';
 
 
+import Login from './Login';
+import Signup from './Signup';
+import UserDetail from './UserDetail'
+import ForgotPassword from './ForgotPassword';
+
+
+
+
 
 export default class ServiceList extends React.Component {
 
@@ -23,6 +31,7 @@ export default class ServiceList extends React.Component {
             address: this.props.navigation.state.params.user.address,
             client_id: this.props.navigation.state.params.user._id,
             work: '',
+            login: false,
         };
     }
 
@@ -83,6 +92,10 @@ export default class ServiceList extends React.Component {
 
 
 
+    loginHandler = () => {
+        this.setState({ login: true, user: {} });
+        alert(this.state.login);
+    }
 
 
 
@@ -106,120 +119,124 @@ export default class ServiceList extends React.Component {
 
         const { navigate } = this.props.navigation;
         const { _id, service_tnc, service_charge, service_name } = this.props.navigation.state.params.service;
-        const { date, address, waiting, msg, work } = this.state;
+        const { service, changeLoginState, user } = this.props.navigation.state.params;
+        const { login, date, address, waiting, msg, work } = this.state;
+
+        if (login) {
+
+            return (
+                <ScrollView>
+                    <View style={styles.container}>
+
+                        <TextInput
+                            multiline={true}
+                            numberOfLines={10}
+                            label="Work Description"
+                            name="work"
+                            value={work}
+                            mode="outlined"
+                            onChangeText={(text) => this.handleChangeWork(text)}
+                            style={{ height: 100, width: '90%', alignSelf: 'center' }}
+                        >
+                        </TextInput>
 
 
-        return (
+                        <TextInput
+                            multiline={true}
+                            numberOfLines={10}
+                            label="Address"
+                            name="address"
+                            value={address}
+                            mode="outlined"
+                            underlineColorAndroid="#ff861b"
+                            underlineColor="#ff861b"
+                            onChangeText={(text) => this.handleChange(text)}
+                            style={{ height: 100, width: '90%', alignSelf: 'center', marginTop: 8, }}
+                        >
+                        </TextInput>
 
 
-            <ScrollView>
-
-                {/* <View style={{ backgroundColor: '#ff861b', height: 62, overflow: 'scroll' }} >
-                    <Text style={{ fontSize: 18, position: 'absolute', left: 15, top: 15, fontWeight: 'bold', color: 'white' }}>{service_name}</Text>
-                    <Text
-                            style={{ position: 'absolute', textAlign: 'center', right: 15, top: 15, width: 60, color: 'white', padding: 5, borderColor: 'white', borderWidth: 1, borderRadius: 3 }}
-                            onPress={() => navigate({ routeName: 'Login', params: { loginHandler: this.loginHandler } })}
-                        >{service_name}</Text>
-                </View> */}
-
-                <View style={styles.container}>
-
-                    <TextInput
-                        multiline={true}
-                        numberOfLines={10}
-                        label="Work Description"
-                        name="work"
-                        value={work}
-                        mode="outlined"
-                        onChangeText={(text) => this.handleChangeWork(text)}
-                        style={{ height: 100, width: '90%', alignSelf: 'center' }}
-                    >
-                    </TextInput>
-
-
-                    <TextInput
-                        multiline={true}
-                        numberOfLines={10}
-                        label="Address"
-                        name="address"
-                        value={address}
-                        mode="outlined"
-                        underlineColorAndroid="#ff861b"
-                        underlineColor="#ff861b"
-                        onChangeText={(text) => this.handleChange(text)}
-                        style={{ height: 100, width: '90%', alignSelf: 'center', marginTop: 8, }}
-                    >
-                    </TextInput>
-
-
-                    <TextInput
-                        label="Visiting Charge"
-                        value={service_charge}
-                        name="address"
-                        mode="outlined"
-                        editable={false}
-                        disabled
-                        onChangeText={(text) => this.handleChange(text)}
-                        style={{ width: '90%', alignSelf: 'center', marginTop: 10 }}
-                    >
-                    </TextInput>
+                        <TextInput
+                            label="Visiting Charge"
+                            value={service_charge}
+                            name="address"
+                            mode="outlined"
+                            editable={false}
+                            disabled
+                            onChangeText={(text) => this.handleChange(text)}
+                            style={{ width: '90%', alignSelf: 'center', marginTop: 10 }}
+                        >
+                        </TextInput>
 
 
 
-                    {date ?
-                        (
-                            <TextInput
-                                label="Date & Time"
-                                value={date.toString()}
-                                name="address"
-                                mode="outlined"
-                                editable={false}
-                                disabled
-                                onChangeText={(text) => this.handleChange(text)}
-                                style={{ width: '90%', alignSelf: 'center', marginTop: 10 }}
-                            >
-                            </TextInput>
+                        {date ?
+                            (
+                                <TextInput
+                                    label="Date & Time"
+                                    value={date.toString()}
+                                    name="address"
+                                    mode="outlined"
+                                    editable={false}
+                                    disabled
+                                    onChangeText={(text) => this.handleChange(text)}
+                                    style={{ width: '90%', alignSelf: 'center', marginTop: 10 }}
+                                >
+                                </TextInput>
 
 
 
-                        ) :
-                        (<Text></Text>)
-                    }
+                            ) :
+                            (<Text></Text>)
+                        }
 
 
 
-                    <Button
-                        title="Select Date & Time"
-                        titleStyle={{ color: '#ff861b' }}
-                        buttonStyle={styles.buttonDT}
-                        onPress={this.showDatePicker}
-                    />
-                    <DateTimePicker
-                        isVisible={this.state.isDatePickerVisible}
-                        onConfirm={this.handleDatePicked}
-                        onCancel={this.hideDatePicker}
-                        mode='datetime'
-                        titleStyle={{ backgroundColor: "#ff861b" }}
-                    />
-
-                    {date ?
-                        (<Button
-                            title="Book"
+                        <Button
+                            title="Select Date & Time"
                             titleStyle={{ color: '#ff861b' }}
                             buttonStyle={styles.buttonDT}
-                            onPress={() => this.bookingHandler(_id, date)}>
-                        </Button>
-                        ) : (<Text style={styles.msg}>{msg}</Text>)
-                    }
-                    {waiting ? (
-                        <View style={styles.ActivityContainer}>
-                            <ActivityIndicator size="large" color="#ff861b" />
-                        </View>) : (<Text></Text>)
-                    }
+                            onPress={this.showDatePicker}
+                        />
+                        <DateTimePicker
+                            isVisible={this.state.isDatePickerVisible}
+                            onConfirm={this.handleDatePicked}
+                            onCancel={this.hideDatePicker}
+                            mode='datetime'
+                            titleStyle={{ backgroundColor: "#ff861b" }}
+                        />
 
-                </View>
-            </ScrollView>
-        )
+                        {date ?
+                            (<Button
+                                title="Book"
+                                titleStyle={{ color: '#ff861b' }}
+                                buttonStyle={styles.buttonDT}
+                                onPress={() => this.bookingHandler(_id, date)}>
+                            </Button>
+                            ) : (<Text style={styles.msg}>{msg}</Text>)
+                        }
+                        {waiting ? (
+                            <View style={styles.ActivityContainer}>
+                                <ActivityIndicator size="large" color="#ff861b" />
+                            </View>) : (<Text></Text>)
+                        }
+
+                    </View>
+                </ScrollView>
+            )
+        } else {
+            return (
+                <ScrollView contentContainerStyle={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} >
+
+                    <Text>HEllo</Text>
+                    <Text
+                        style={{ position: 'absolute', textAlign: 'center', right: 15, top: 15, width: 60, color: 'black', padding: 5, borderColor: 'black', borderWidth: 1, borderRadius: 3 }}
+                        onPress={() => navigate({ routeName: 'Login', params: { loginHandler: this.loginHandler } })}
+                    >LOGIN</Text>
+
+                </ScrollView>
+            )
+        }
     }
 }
 

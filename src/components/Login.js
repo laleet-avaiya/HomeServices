@@ -48,6 +48,7 @@ export default class Login extends React.Component {
     render() {
 
         const { navigate } = this.props.navigation;
+        const { loginHandler } = this.props.navigation.state.params;
 
         return (
             <View style={styles.container}>
@@ -87,7 +88,9 @@ export default class Login extends React.Component {
                             onChangeText={val => this.onChangeText("password", val)}
                         />
 
-                        <Button title="Login" buttonStyle={styles.button} onPress={() => { this.setState({ user: true }) }}></Button>
+                        <Button title="Login" buttonStyle={styles.button}
+                            onPress={ () => { loginHandler();  this.props.navigation.pop(1) } } 
+                        ></Button>
 
                         <View style={{ alignSelf: 'center', textAlign: 'center', flex: 1, alignContent: 'space-between', justifyContent: 'center' }}>
                             <Text style={styles.bottomText} onPress={() => navigate({ routeName: "ForgotPassword" })}>Forgot Password ?

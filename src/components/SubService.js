@@ -6,8 +6,8 @@ import ServiceList from './ServiceList';
 export default class SubService extends Component {
     render() {
         const { navigate } = this.props.navigation;
-        const { service } = this.props.navigation.state.params;
-        const { user } = this.props.navigation.state.params;
+        const { service,changeLoginState,user } = this.props.navigation.state.params;
+
 
         return (
             <View>
@@ -18,7 +18,8 @@ export default class SubService extends Component {
                             leftAvatar={{ source: { uri: item.image_url } }}
                             title={item.title}
                             titleStyle={{ fontSize: 16, color: "black" }}
-                            onPress={() => { navigate({ routeName: 'ServiceList', params: { service: service, user: { _id: user._id, address: '874, Sector 2-C', description: item.title } } }) }}
+                            onPress={() => { navigate({ routeName: 'ServiceList', params: { service: service, changeLoginState: changeLoginState,user: { _id: user._id, address: '874, Sector 2-C', description: item.title } } }) }}
+                            // onPress = { (e) => {changeLoginState("HEllo")}}
                         />
                     ))
                 }

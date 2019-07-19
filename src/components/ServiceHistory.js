@@ -76,7 +76,7 @@ const HistoryData = [
 ]
 
 
-class ServiceHistory extends React.Component {
+export default class ServiceHistory extends React.Component {
     static navigationOptions = {
         title: 'My Bookings',
         headerStyle: {
@@ -88,7 +88,7 @@ class ServiceHistory extends React.Component {
         super();
         this.state = {
             search: '',
-            login: false,
+            userLogin: false,
             historyData: false,
         };
     }
@@ -113,10 +113,10 @@ class ServiceHistory extends React.Component {
 
     render() {
 
-        const { search, login, historyData } = this.state;
+        const { search, userLogin, historyData } = this.state;
         const { navigate } = this.props.navigation;
 
-        if (!login) {
+        if (!userLogin) {
             return (
 
 
@@ -181,24 +181,24 @@ class ServiceHistory extends React.Component {
 
 
 
-const AppNavigator = createStackNavigator({
-    ServiceHistory: {
-        screen: ServiceHistory
-    },
-    Login: {
-        screen: Login,
-    },
-    Signup: {
-        screen: Signup,
-    },
-}, {
-        initialRouteName: 'ServiceHistory',
-    });
+// const AppNavigator = createStackNavigator({
+//     ServiceHistory: {
+//         screen: ServiceHistory
+//     },
+//     Login: {
+//         screen: Login,
+//     },
+//     Signup: {
+//         screen: Signup,
+//     },
+// }, {
+//         initialRouteName: 'ServiceHistory',
+//     });
 
 
 
 
-export default createAppContainer(AppNavigator);
+// export default createAppContainer(AppNavigator);
 
 
 const styles = StyleSheet.create({
