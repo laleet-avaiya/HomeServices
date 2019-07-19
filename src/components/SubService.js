@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, Image, StyleSheet, TextInput, ActivityIndicator } from 'react-native';
 import { ListItem } from 'react-native-elements'
-import Booking from './Booking';
+import ServiceList from './ServiceList';
 
 export default class SubService extends Component {
     render() {
@@ -20,7 +20,7 @@ export default class SubService extends Component {
                             title={item.title}
                             // subtitle={l.subtitle}
                             titleStyle={{ fontSize: 16, color: "black" }}
-                            onPress={() => { navigate({ routeName: 'Booking', params: { service: service, user: { _id: null, address: 'Home', description: item.title } } }) }}
+                            onPress={() => { navigate({ routeName: 'ServiceList', params: { service: service, user: { _id: null, address: 'Home', description: item.title } } }) }}
                         />
                     ))
                 }
