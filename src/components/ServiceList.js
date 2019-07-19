@@ -38,7 +38,7 @@ export default class ServiceList extends React.Component {
 
 
     static navigationOptions = {
-        title:"Booking",
+        title: "Booking",
         headerTintColor: "white",
         headerStyle: {
             // display: 'none',
@@ -121,8 +121,8 @@ export default class ServiceList extends React.Component {
     render() {
 
         const { navigate } = this.props.navigation;
-        const {  service_tnc, service_charge, service_name } = this.props.navigation.state.params.service;
-        const { service, changeLoginState, user,work } = this.props.navigation.state.params;
+        const { service_tnc, service_charge, service_name } = this.props.navigation.state.params.service;
+        const { service, changeLoginState, user, work } = this.props.navigation.state.params;
         const { login, date, address, waiting, msg, } = this.state;
 
         if (login) {
@@ -231,12 +231,14 @@ export default class ServiceList extends React.Component {
         } else {
             return (
                 <ScrollView contentContainerStyle={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} >
-                <Text style={{fontSize:30,fontWeight:'bold',color:"gray",}}>Your are not Logged In </Text>
-                <Text style={{fontSize:30,fontWeight:'bold',color:"gray",marginBottom:50}}>Login First...</Text>
+                    {/* 
+                    <Text style={{ fontSize: 30, fontWeight: 'bold', color: "gray", }}>Your are not Logged In </Text>
+                    <Text style={{ fontSize: 30, fontWeight: 'bold', color: "gray", marginBottom: 50 }}>Login First...</Text> */}
+                    <ActivityIndicator size="large" color="#ff861b" />
                     <Text
-                        style={{fontWeight:'700', textAlign:'center', width: 90, color: 'black', padding: 15, borderColor: 'black', borderWidth: 1, borderRadius: 3 }}
-                        onPress={() => navigate({ routeName: 'Login', params: { loginHandler: this.loginHandler } })}
-                    >LOGIN</Text>
+                        // style={{ fontWeight: '700', textAlign: 'center', width: 90, color: 'black', padding: 15, borderColor: 'black', borderWidth: 1, borderRadius: 3 }}
+                        onLayout={() => navigate({ routeName: 'Login', params: { loginHandler: this.loginHandler } })}
+                    ></Text>
 
                 </ScrollView>
             )
