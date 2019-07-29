@@ -12,7 +12,7 @@ import { Input } from 'react-native-elements';
 import LinearGradient from 'react-native-linear-gradient';
 import { ScrollView } from 'react-native-gesture-handler';
 
-const logo = require('../assets/back.png');
+const logo = require('../assets/back.jpg');
 
 export default class UserDetail extends React.Component {
 

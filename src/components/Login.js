@@ -7,7 +7,7 @@ import { Input } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
 
 const logo = require('../assets/logo.png');
-const backgroundImage = require('../assets/back.png');
+const backgroundImage = require('../assets/back.jpg');
 import ServiceList from './ServiceList';
 
 
